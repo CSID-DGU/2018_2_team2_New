@@ -1,0 +1,560 @@
+#prof
+	id = 1
+	name = 신연순
+#end
+
+#prof
+	id = 2
+	name = 문봉교
+#end
+
+#prof
+	id = 3
+	name = 최성연
+#end
+
+#prof
+	id = 4
+	name = 주태우
+#end
+
+#prof
+	id = 5
+	name = 주해종
+#end
+
+#prof
+	id = 6
+	name = 이명숙
+#end
+
+#prof
+	id = 7
+	name = 최은만
+#end
+
+#prof
+	id = 8
+	name = 오세만
+#end
+
+#prof
+	id = 9
+	name = 주종화
+#end
+
+#prof
+	id = 10
+	name = 윤성림
+#end
+
+#prof
+	id = 11
+	name = 김경자
+#end
+
+#prof
+	id = 12
+	name = 엄진영
+#end
+
+#prof
+	id = 13
+	name = 장은실
+#end
+
+#prof
+	id = 14
+	name = 송양의
+#end
+
+#prof
+	id = 15
+	name = 김시명
+#end
+
+#prof
+	id = 16
+	name = 이호정
+#end
+
+#prof
+	id = 17
+	name = 홍성옥
+#end
+
+#prof
+	id = 18
+	name = 홍정모
+#end
+
+#prof
+	id = 19
+	name = 김가영
+#end
+
+#prof
+	id = 20
+	name = 장태무
+#end
+
+#prof
+	id = 21
+	name = 정준호
+#end
+
+#prof
+	id = 22
+	name = 정진우
+#end
+
+#prof
+	id = 23
+	name = 손윤식
+#end
+
+#prof
+	id = 24
+	name = 이강우
+#end
+
+#prof
+	id = 25
+	name = 박미화
+#end
+
+#prof
+	id = 26
+	name = 김동호
+#end
+
+#prof
+	id = 27
+	name = 이용규
+#end
+
+#room
+	name = S401-3142
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-6144
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-4147
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-5143
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-5145
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-3182
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-10144
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-6119
+	lab = 
+	size = 
+#end
+
+#room
+	name = J407-105
+	lab = 
+	size = 
+#end
+
+#room
+	name = J408-321
+	lab = 
+	size = 
+#end
+
+#room
+	name = J407-B101
+	lab = 
+	size = 
+#end
+
+#room
+	name = H501-203
+	lab = 
+	size = 
+#end
+
+#room
+	name = null
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-3115
+	lab = 
+	size = 
+#end
+
+#room
+	name = W405-318
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-3183
+	lab = 
+	size = 
+#end
+
+#room
+	name = S401-4142
+	lab = 
+	size = 
+#end
+
+#room
+	name = 408-221
+
+	lab = 
+	size = 
+#end
+
+#room
+	name = 
+	lab = 
+	size = 
+#end
+
+#course
+	id = 1
+	name = 창의적공학설계
+#end
+
+#course
+	id = 2
+	name = 계산적사고법
+#end
+
+#course
+	id = 3
+	name = 계산적사고법
+#end
+
+#course
+	id = 4
+	name = 이산구조
+#end
+
+#course
+	id = 5
+	name = 이산구조
+#end
+
+#course
+	id = 6
+	name = 자료구조와실습
+#end
+
+#course
+	id = 7
+	name = 자료구조와실습
+#end
+
+#course
+	id = 8
+	name = 자료구조와실습
+#end
+
+#course
+	id = 9
+	name = 객체지향언어와실습
+#end
+
+#course
+	id = 10
+	name = 객체지향언어와실습
+#end
+
+#course
+	id = 11
+	name = 객체지향언어와실습
+#end
+
+#course
+	id = 12
+	name = 객체지향언어와실습
+#end
+
+#course
+	id = 13
+	name = 이산수학
+#end
+
+#course
+	id = 14
+	name = 이산수학
+#end
+
+#course
+	id = 15
+	name = 이산수학
+#end
+
+#course
+	id = 16
+	name = 이산수학
+#end
+
+#course
+	id = 17
+	name = 이산수학
+#end
+
+#course
+	id = 18
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 19
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 20
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 21
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 22
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 23
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 24
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 25
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 26
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 27
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 28
+	name = 프로그래밍기초와실습
+#end
+
+#course
+	id = 29
+	name = 기초프로그래밍
+#end
+
+#course
+	id = 30
+	name = 기초프로그래밍
+#end
+
+#course
+	id = 31
+	name = 기초프로그래밍
+#end
+
+#course
+	id = 32
+	name = 컴퓨터구성
+#end
+
+#course
+	id = 33
+	name = 컴퓨터구성
+#end
+
+#course
+	id = 34
+	name = 심화프로그래밍
+#end
+
+#course
+	id = 35
+	name = 심화프로그래밍
+#end
+
+#course
+	id = 36
+	name = 컴퓨터알고리즘과실습
+#end
+
+#course
+	id = 37
+	name = 컴퓨터알고리즘과실습
+#end
+
+#course
+	id = 38
+	name = 컴퓨터알고리즘과실습
+#end
+
+#course
+	id = 39
+	name = 형식언어
+#end
+
+#course
+	id = 40
+	name = 형식언어
+#end
+
+#course
+	id = 41
+	name = 형식언어
+#end
+
+#course
+	id = 42
+	name = 운영체제
+#end
+
+#course
+	id = 43
+	name = 운영체제
+#end
+
+#course
+	id = 44
+	name = 데이터베이스시스템
+#end
+
+#course
+	id = 45
+	name = 데이터베이스시스템
+#end
+
+#course
+	id = 46
+	name = 컴퓨터네트워킹
+#end
+
+#course
+	id = 47
+	name = 컴퓨터보안
+#end
+
+#course
+	id = 48
+	name = 객체지향설계와패턴
+#end
+
+#course
+	id = 49
+	name = 모바일컴퓨팅
+#end
+
+#course
+	id = 50
+	name = 컴퓨터그래픽스입문
+#end
+
+#course
+	id = 51
+	name = S/W품질관리및테스팅
+#end
+
+#course
+	id = 52
+	name = 컴퓨터공학종합설계1
+#end
+
+#course
+	id = 53
+	name = 컴퓨터공학종합설계1
+#end
+
+#course
+	id = 54
+	name = 컴퓨터공학종합설계1
+#end
+
+#course
+	id = 55
+	name = 컴퓨터공학종합설계1
+#end
+
+#course
+	id = 56
+	name = 컴퓨터공학종합설계2
+#end
+
+#course
+	id = 57
+	name = 인간컴퓨터상호작용시스템
+#end
+
+#course
+	id = 58
+	name = 공개SW프로젝트
+#end
+
+#course
+	id = 59
+	name = 공개SW프로젝트
+#end
+
+#course
+	id = 60
+	name = 공업교육론
+#end
+
+#course
+	id = 61
+	name = 컴퓨터교육론
+#end
+
+#course
+	id = 62
+	name = 컴퓨터활용과실습
+#end
+
