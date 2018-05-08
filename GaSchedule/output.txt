@@ -133,121 +133,6 @@
 	name = 이용규
 #end
 
-#room
-	name = S401-3142
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-6144
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-4147
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-5143
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-5145
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-3182
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-10144
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-6119
-	lab = 
-	size = 
-#end
-
-#room
-	name = J407-105
-	lab = 
-	size = 
-#end
-
-#room
-	name = J408-321
-	lab = 
-	size = 
-#end
-
-#room
-	name = J407-B101
-	lab = 
-	size = 
-#end
-
-#room
-	name = H501-203
-	lab = 
-	size = 
-#end
-
-#room
-	name = null
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-3115
-	lab = 
-	size = 
-#end
-
-#room
-	name = W405-318
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-3183
-	lab = 
-	size = 
-#end
-
-#room
-	name = S401-4142
-	lab = 
-	size = 
-#end
-
-#room
-	name = 408-221
-
-	lab = 
-	size = 
-#end
-
-#room
-	name = 
-	lab = 
-	size = 
-#end
-
 #course
 	id = 1
 	name = 창의적공학설계
@@ -556,5 +441,107 @@
 #course
 	id = 62
 	name = 컴퓨터활용과실습
+#end
+
+#room
+	name = S401-3142
+	lab = false
+	size = 40
+#end
+
+#room
+	name = S401-6144
+	lab = false
+	size = 86
+#end
+
+#room
+	name = S401-4147
+	lab = false
+	size = 80
+#end
+
+#room
+	name = S401-5143
+	lab = false
+	size = 60
+#end
+
+#room
+	name = S401-5145
+	lab = false
+	size = 72
+#end
+
+#room
+	name = S401-3182
+	lab = true
+	size = 36
+#end
+
+#room
+	name = S401-10144
+	lab = false
+	size = 40
+#end
+
+#room
+	name = S401-6119
+	lab = true
+	size = 50
+#end
+
+#room
+	name = J407-105
+	lab = false
+	size = 80
+#end
+
+#room
+	name = J408-321
+	lab = false
+	size = 88
+#end
+
+#room
+	name = J407-B101
+	lab = false
+	size = 70
+#end
+
+#room
+	name = H501-203
+	lab = false
+	size = 120
+#end
+
+#room
+	name = S401-3115
+	lab = true
+	size = 45
+#end
+
+#room
+	name = W405-318
+	lab = true
+	size = 50
+#end
+
+#room
+	name = S401-3183
+	lab = true
+	size = 36
+#end
+
+#room
+	name = S401-4142
+	lab = false
+	size = 37
+#end
+
+#room
+	name = J408-221
+	lab = true
+	size = 50
 #end
 

@@ -532,15 +532,25 @@ public:
 	void setDuration(string s) { duration = s; }
 	void setCourse(string s) { course = s; }
 };
-
+class room {
+	string name;
+	string lab;
+	int size;
+public:
+	string getName() { return name; }
+	string getLab() { return lab; }
+	int getSize() { return size; }
+	void setName(string s) { name = s; }
+	void setLab(string s) { lab = s; }
+	void setSize(int s) { size = s; }
+};
 void CChildView::OnFileExcel()
 {
 	CFileDialog ex(TRUE, NULL, NULL, 0,
 		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
-
+	c_class c[100]; int c_size = 0;
 	if (ex.DoModal() == IDOK)
 	{
-		c_class c[100];
 		CString path = ex.GetFolderPath().GetBuffer();
 		CString op("\\");
 		CString name = ex.GetFileName().GetBuffer();
@@ -548,57 +558,72 @@ void CChildView::OnFileExcel()
 
 		string prof, duration, course, index, x;
 		string room[200];
-		int i = 0, j = 0;
 		ifstream f(tmp);
 		getline(f, index, '\n');
 		while (f.good()) {
-			getline(f, course, ','); c[i].setCourse(course);
-			getline(f, duration, ','); c[i].setDuration(duration);
-			getline(f, prof, ','); c[i].setProf(prof);
-			getline(f, room[j], ','); room[j] = room[j].substr(1);
-			getline(f, room[j + 1], '\n'); room[j + 1] = room[j + 1].substr(0, room[j + 1].length() - 1);
-			i++; j += 2;
+			getline(f, course, ','); c[c_size].setCourse(course);
+			getline(f, duration, ','); c[c_size].setDuration(duration);
+			getline(f, prof, '\n'); c[c_size].setProf(prof);
+			c_size++;
 		}
+		c_size--;
 		f.close();
-		int cn = 0; string overlap = c[0].getProf();
-		ofstream outFile("output.txt");
-		for (int k = 0; k < i; k++) {
-			int p;
-			for (p = 0; p < k; p++) {
-				if (c[k].getProf() == c[p].getProf()) break;
-			}
-			if (k == p) {
-				cn++;
-				outFile << "#prof" << endl;
-				outFile << "\tid = " << cn << endl;
-				outFile << "\tname = " << c[k].getProf() << endl;
-				outFile << "#end" << endl << endl;
-				
-			}
-		}
-		for (int k = 0; k < j; k++) {
-			int p;
-			for (p = 0; p < k; p++) {
-				if (room[k] == room[p]) break;
-			}
-			if (k == p) {
-				cn++;
-				outFile << "#room" << endl;
-				outFile << "\tname = " << room[k] << endl;
-				outFile << "\tlab = " << endl;
-				outFile << "\tsize = " << endl;
-				outFile << "#end" << endl << endl;
-
-			}
-		}
-		for (int k = 0; k < i; k++) {
-			outFile << "#course" << endl;
-			outFile << "\tid = " << k + 1 << endl;
-			outFile << "\tname = " << c[k].getCourse() << endl;
-			outFile << "#end" << endl << endl;
-		}
-		outFile.close();
-		
 	}
+
+	CFileDialog rr(TRUE, NULL, NULL, 0,
+		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
+	room r[100]; int r_size = 0;
+	if (rr.DoModal() == IDOK)
+	{
+		CString path = rr.GetFolderPath().GetBuffer();
+		CString op("\\");
+		CString name = rr.GetFileName().GetBuffer();
+		CString tmp = path + op + name;
+
+		string rname, lab, size, index, x;
+		ifstream f2(tmp);
+		getline(f2, index, '\n');
+		while (f2.good()) {
+			getline(f2, rname, ','); r[r_size].setName(rname);
+			getline(f2, lab, ','); 
+			if(lab == "O") r[r_size].setLab("true");
+			else r[r_size].setLab("false");
+			getline(f2, size, '\n'); r[r_size].setSize(stoi(size));
+			r_size++;
+		}
+		r_size--;
+		f2.close();
+	}
+	int cn = 0; string overlap = c[0].getProf();
+	ofstream outFile("output.txt");
+	for (int k = 0; k < c_size; k++) {
+		int p;
+		for (p = 0; p < k; p++) {
+			if (c[k].getProf() == c[p].getProf()) break;
+		}
+		if (k == p) {
+			cn++;
+			outFile << "#prof" << endl;
+			outFile << "\tid = " << cn << endl;
+			outFile << "\tname = " << c[k].getProf() << endl;
+			outFile << "#end" << endl << endl;
+
+		}
+	}
+	for (int k = 0; k < c_size; k++) {
+		outFile << "#course" << endl;
+		outFile << "\tid = " << k + 1 << endl;
+		outFile << "\tname = " << c[k].getCourse() << endl;
+		outFile << "#end" << endl << endl;
+	}
+	for (int k = 0; k < r_size; k++) {
+		outFile << "#room" << endl;
+		outFile << "\tname = " << r[k].getName() << endl;
+		outFile << "\tlab = " << r[k].getLab() << endl;
+		outFile << "\tsize = " << r[k].getSize() << endl;
+		outFile << "#end" << endl << endl;
+	}
+	outFile.close();
+
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.http://yeobi27.tistory.com/entry/MFC-MFC%EC%97%90%EC%84%9C-Excel-%EC%82%AC%EC%9A%A9Automation-Class-%EC%99%80-ExcelFormat-Library?category=741605
 }
