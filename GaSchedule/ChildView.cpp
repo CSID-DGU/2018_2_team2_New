@@ -520,17 +520,40 @@ void CChildView::OnUpdateFileStop(CCmdUI *pCmdUI)
 	pCmdUI->Enable(_running);
 }
 
-class c_class {
-	string prof;
-	string duration; 
-	string course;  
+class professor {
+	string name;
+	int id;
 public:
-	string getProf() { return prof; }
+	int getProfID() { return id; }
+	string getProfName() { return name; }
+	void setProfName(string s) { name = s; }
+	void setProfID(int n) { id = n; }
+};
+class course {
+	string name;
+	int id;
+public:
+	int getCourseID() { return id; }
+	string getCourseName() { return name; }
+	void setCourseID(int n) { id = n; }
+	void setCourseName(string s) { name = s; }
+};
+class c_class {
+	professor prof;
+	string duration; 
+	course cour;  
+public:
+	string getProfName() { return prof.getProfName(); }
+	int getProfID() { return prof.getProfID(); }
 	string getDuration() { return duration; }
-	string getCourse() { return course; }
-	void setProf(string s) { prof = s; }
+	string getCourseName() { return cour.getCourseName(); }
+	int getCourseID() { return cour.getCourseID(); }
+
+	void setProfName(string s) { prof.setProfName(s); }
+	void setProfID(int n) { prof.setProfID(n); }
 	void setDuration(string s) { duration = s; }
-	void setCourse(string s) { course = s; }
+	void setCourseID(int n) { cour.setCourseID(n); }
+	void setCourseName(string s) { cour.setCourseName(s); }
 };
 class room {
 	string name;
@@ -561,9 +584,9 @@ void CChildView::OnFileExcel()
 		ifstream f(tmp);
 		getline(f, index, '\n');
 		while (f.good()) {
-			getline(f, course, ','); c[c_size].setCourse(course);
+			getline(f, course, ','); c[c_size].setCourseName(course);
 			getline(f, duration, ','); c[c_size].setDuration(duration);
-			getline(f, prof, '\n'); c[c_size].setProf(prof);
+			getline(f, prof, '\n'); c[c_size].setProfName(prof);
 			c_size++;
 		}
 		c_size--;
@@ -594,33 +617,65 @@ void CChildView::OnFileExcel()
 		r_size--;
 		f2.close();
 	}
-	int cn = 0; string overlap = c[0].getProf();
+	int cn = 0; string overlap = c[0].getProfName();
 	ofstream outFile("output.txt");
 	for (int k = 0; k < c_size; k++) {
 		int p;
 		for (p = 0; p < k; p++) {
-			if (c[k].getProf() == c[p].getProf()) break;
+			if (c[k].getProfName() == c[p].getProfName()) break;
 		}
 		if (k == p) {
 			cn++;
 			outFile << "#prof" << endl;
-			outFile << "\tid = " << cn << endl;
-			outFile << "\tname = " << c[k].getProf() << endl;
+			outFile << "\tid = " << cn << endl; c[k].setProfID(cn);
+			outFile << "\tname = " << c[k].getProfName() << endl;
 			outFile << "#end" << endl << endl;
 
 		}
 	}
+	for (int k = 1; k < c_size; k++) {
+		for (int q = 0; q < k; q++) {
+			if (c[q].getProfName() == c[k].getProfName()) {
+				int pid = c[q].getProfID();
+				c[k].setProfID(pid);
+			}
+		}
+	}
+	int cn2 = 0;
 	for (int k = 0; k < c_size; k++) {
-		outFile << "#course" << endl;
-		outFile << "\tid = " << k + 1 << endl;
-		outFile << "\tname = " << c[k].getCourse() << endl;
-		outFile << "#end" << endl << endl;
+		int p;
+		for (p = 0; p < k; p++) {
+			if (c[k].getCourseName() == c[p].getCourseName()) break;
+		}
+		if (k == p) {
+			cn2++;
+			outFile << "#course" << endl;
+			outFile << "\tid = " << cn2 << endl; c[k].setCourseID(cn2);
+			outFile << "\tname = " << c[k].getCourseName() << endl;
+			outFile << "#end" << endl << endl;
+		}
+	}
+	for (int k = 1; k < c_size; k++) {
+		for (int q = 0; q < k; q++) {
+			if (c[q].getCourseName() == c[k].getCourseName()) {
+				int pid = c[q].getCourseID();
+				c[k].setCourseID(pid);
+			}
+		}
 	}
 	for (int k = 0; k < r_size; k++) {
 		outFile << "#room" << endl;
 		outFile << "\tname = " << r[k].getName() << endl;
 		outFile << "\tlab = " << r[k].getLab() << endl;
 		outFile << "\tsize = " << r[k].getSize() << endl;
+		outFile << "#end" << endl << endl;
+	}
+	for (int k = 0; k < c_size; k++) {
+		outFile << "#class" << endl;
+		outFile << "\tprofessor = " << c[k].getProfID() << endl;
+		outFile << "\tcourse = " << c[k].getCourseID() << endl;
+		outFile << "\tduration = " << c[k].getDuration() << endl;
+		outFile << "\tgroup = " << endl;
 		outFile << "#end" << endl << endl;
 	}
 	outFile.close();

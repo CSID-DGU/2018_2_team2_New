@@ -145,301 +145,126 @@
 
 #course
 	id = 3
-	name = 계산적사고법
+	name = 이산구조
 #end
 
 #course
 	id = 4
-	name = 이산구조
+	name = 자료구조와실습
 #end
 
 #course
 	id = 5
-	name = 이산구조
+	name = 객체지향언어와실습
 #end
 
 #course
 	id = 6
-	name = 자료구조와실습
+	name = 이산수학
 #end
 
 #course
 	id = 7
-	name = 자료구조와실습
+	name = 프로그래밍기초와실습
 #end
 
 #course
 	id = 8
-	name = 자료구조와실습
+	name = 기초프로그래밍
 #end
 
 #course
 	id = 9
-	name = 객체지향언어와실습
+	name = 컴퓨터구성
 #end
 
 #course
 	id = 10
-	name = 객체지향언어와실습
+	name = 심화프로그래밍
 #end
 
 #course
 	id = 11
-	name = 객체지향언어와실습
+	name = 컴퓨터알고리즘과실습
 #end
 
 #course
 	id = 12
-	name = 객체지향언어와실습
+	name = 형식언어
 #end
 
 #course
 	id = 13
-	name = 이산수학
+	name = 운영체제
 #end
 
 #course
 	id = 14
-	name = 이산수학
+	name = 데이터베이스시스템
 #end
 
 #course
 	id = 15
-	name = 이산수학
-#end
-
-#course
-	id = 16
-	name = 이산수학
-#end
-
-#course
-	id = 17
-	name = 이산수학
-#end
-
-#course
-	id = 18
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 19
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 20
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 21
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 22
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 23
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 24
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 25
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 26
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 27
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 28
-	name = 프로그래밍기초와실습
-#end
-
-#course
-	id = 29
-	name = 기초프로그래밍
-#end
-
-#course
-	id = 30
-	name = 기초프로그래밍
-#end
-
-#course
-	id = 31
-	name = 기초프로그래밍
-#end
-
-#course
-	id = 32
-	name = 컴퓨터구성
-#end
-
-#course
-	id = 33
-	name = 컴퓨터구성
-#end
-
-#course
-	id = 34
-	name = 심화프로그래밍
-#end
-
-#course
-	id = 35
-	name = 심화프로그래밍
-#end
-
-#course
-	id = 36
-	name = 컴퓨터알고리즘과실습
-#end
-
-#course
-	id = 37
-	name = 컴퓨터알고리즘과실습
-#end
-
-#course
-	id = 38
-	name = 컴퓨터알고리즘과실습
-#end
-
-#course
-	id = 39
-	name = 형식언어
-#end
-
-#course
-	id = 40
-	name = 형식언어
-#end
-
-#course
-	id = 41
-	name = 형식언어
-#end
-
-#course
-	id = 42
-	name = 운영체제
-#end
-
-#course
-	id = 43
-	name = 운영체제
-#end
-
-#course
-	id = 44
-	name = 데이터베이스시스템
-#end
-
-#course
-	id = 45
-	name = 데이터베이스시스템
-#end
-
-#course
-	id = 46
 	name = 컴퓨터네트워킹
 #end
 
 #course
-	id = 47
+	id = 16
 	name = 컴퓨터보안
 #end
 
 #course
-	id = 48
+	id = 17
 	name = 객체지향설계와패턴
 #end
 
 #course
-	id = 49
+	id = 18
 	name = 모바일컴퓨팅
 #end
 
 #course
-	id = 50
+	id = 19
 	name = 컴퓨터그래픽스입문
 #end
 
 #course
-	id = 51
+	id = 20
 	name = S/W품질관리및테스팅
 #end
 
 #course
-	id = 52
+	id = 21
 	name = 컴퓨터공학종합설계1
 #end
 
 #course
-	id = 53
-	name = 컴퓨터공학종합설계1
-#end
-
-#course
-	id = 54
-	name = 컴퓨터공학종합설계1
-#end
-
-#course
-	id = 55
-	name = 컴퓨터공학종합설계1
-#end
-
-#course
-	id = 56
+	id = 22
 	name = 컴퓨터공학종합설계2
 #end
 
 #course
-	id = 57
+	id = 23
 	name = 인간컴퓨터상호작용시스템
 #end
 
 #course
-	id = 58
+	id = 24
 	name = 공개SW프로젝트
 #end
 
 #course
-	id = 59
-	name = 공개SW프로젝트
-#end
-
-#course
-	id = 60
+	id = 25
 	name = 공업교육론
 #end
 
 #course
-	id = 61
+	id = 26
 	name = 컴퓨터교육론
 #end
 
 #course
-	id = 62
+	id = 27
 	name = 컴퓨터활용과실습
 #end
 
@@ -543,5 +368,439 @@
 	name = J408-221
 	lab = true
 	size = 50
+#end
+
+#class
+	professor = 1
+	course = 1
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 2
+	course = 2
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 3
+	course = 2
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 4
+	course = 3
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 4
+	course = 3
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 5
+	course = 4
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 6
+	course = 4
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 7
+	course = 4
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 8
+	course = 5
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 8
+	course = 5
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 9
+	course = 5
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 10
+	course = 5
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 4
+	course = 6
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 11
+	course = 6
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 12
+	course = 6
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 11
+	course = 6
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 13
+	course = 6
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 6
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 14
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 15
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 16
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 15
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 10
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 13
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 13
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 12
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 17
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 12
+	course = 7
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 18
+	course = 8
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 19
+	course = 8
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 19
+	course = 8
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 20
+	course = 9
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 20
+	course = 9
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 21
+	course = 10
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 21
+	course = 10
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 22
+	course = 11
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 9
+	course = 11
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 9
+	course = 11
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 23
+	course = 12
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 23
+	course = 12
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 23
+	course = 12
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 24
+	course = 13
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 21
+	course = 13
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 25
+	course = 14
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 14
+	course = 14
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 26
+	course = 15
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 2
+	course = 16
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 7
+	course = 17
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 2
+	course = 18
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 18
+	course = 19
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 7
+	course = 20
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 22
+	course = 21
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 27
+	course = 21
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 23
+	course = 21
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 1
+	course = 21
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 26
+	course = 22
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 22
+	course = 23
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 26
+	course = 24
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 23
+	course = 24
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 13
+	course = 25
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 19
+	course = 26
+	duration = 3
+	group = 
+#end
+
+#class
+	professor = 16
+	course = 27
+	duration = 2
+	group = 
 #end
 
