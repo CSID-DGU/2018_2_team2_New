@@ -13,7 +13,8 @@
 //#pragma comment(h,"Configuration.h")
 using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
-
+#define SB_LINEUPU 9
+#define SB_LINEDOWNU 10
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -64,6 +65,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_UPDATE_COMMAND_UI(ID_FILE_START, &CChildView::OnUpdateFileStart)
 	ON_UPDATE_COMMAND_UI(ID_FILE_STOP, &CChildView::OnUpdateFileStop)
 	ON_COMMAND(ID_FILE_EXCEL, &CChildView::OnFileExcel)
+	ON_COMMAND(ID_SCROLL_LEFT, &CChildView::OnScrollLeft)
+	ON_COMMAND(ID_SCROLL_RIGHT, &CChildView::OnScrollRight)
 END_MESSAGE_MAP()
 
 // CChildView message handlers
@@ -427,12 +430,14 @@ void CChildView::Scroll(int scrollBar, int nSBCode, int nPos)
 
 	case SB_LINELEFT:
 		if (curpos > minpos)
-			curpos--;
+			//curpos--;
+			curpos -= (ROOM_TABLE_HEIGHT);
 		break;
 
 	case SB_LINERIGHT:
 		if (curpos < maxpos)
-			curpos++;
+			//curpos++;
+			curpos += (ROOM_TABLE_HEIGHT);
 		break;
 
 	case SB_PAGELEFT:
@@ -683,4 +688,19 @@ void CChildView::OnFileExcel()
 	outFile.close();
 
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.http://yeobi27.tistory.com/entry/MFC-MFC%EC%97%90%EC%84%9C-Excel-%EC%82%AC%EC%9A%A9Automation-Class-%EC%99%80-ExcelFormat-Library?category=741605
+}
+
+
+void CChildView::OnScrollLeft()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	CScrollBar* p = this->GetScrollBarCtrl(20);
+	this->OnVScroll(100, 300, p);
+
+}
+
+
+void CChildView::OnScrollRight()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 }

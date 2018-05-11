@@ -54,5 +54,7 @@ public:
 	afx_msg void OnUpdateFileStart(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateFileStop(CCmdUI *pCmdUI);
 	afx_msg void OnFileExcel();
+	afx_msg void OnScrollLeft();
+	afx_msg void OnScrollRight();
 };
 

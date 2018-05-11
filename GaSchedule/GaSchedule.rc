@@ -90,6 +90,11 @@ BEGIN
     BEGIN
         MENUITEM "&About GaSchedule...",        ID_APP_ABOUT
     END
+    POPUP "Scroll"
+    BEGIN
+        MENUITEM "Left",                        ID_SCROLL_LEFT
+        MENUITEM "Right",                       ID_SCROLL_RIGHT
+    END
 END
 
 
