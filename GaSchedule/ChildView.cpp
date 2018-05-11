@@ -75,7 +75,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	cs.dwExStyle |= WS_EX_CLIENTEDGE;
 	cs.style &= ~WS_BORDER;
-	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS,
+	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, //윈도우 프로시져 바인딩
 		::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1), NULL);
 
 	return TRUE;
@@ -101,8 +101,8 @@ void CChildView::OnPaint()
 	GetClientRect(clientRect);
 
 	CDC dc;
-	CBitmap bmp;
-	dc.CreateCompatibleDC(&wndDC);
+	CBitmap bmp; 
+	dc.CreateCompatibleDC(&wndDC); //메모리 장치 컨텍스트 디스플레이 표면을 나타내는 메모리 블록
 	bmp.CreateCompatibleBitmap(&wndDC, clientRect.Width(), clientRect.Height());
 	dc.SelectObject(&bmp);
 
@@ -138,7 +138,9 @@ void CChildView::OnPaint()
 	CBrush classBrush(RGB(255, 255, 245));
 	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
 	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
+	////////////////////////////////////////////////////////
 
+	////////////////////////////////////////////////////////
 	int nr = Configuration::GetInstance().GetNumberOfRooms();
 	for (int k = 0; k < nr; k++)
 	{

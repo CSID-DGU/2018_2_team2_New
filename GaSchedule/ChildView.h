@@ -4,7 +4,7 @@ enum AlgorithmState;
 
 #pragma once
 
-class CChildView : public CWnd//Cwnd는 CFrameWnd, CView, CDialog,CControlBar의 상위클래스
+class CChildView : public CWnd//Cwnd는 CFrameWnd, CView, CDialog, CControlBar의 상위클래스
 {
 
 public:
@@ -37,12 +37,10 @@ protected:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 protected:
-
-	afx_msg void OnPaint();
+	void OnPaint();
 	DECLARE_MESSAGE_MAP()
 
 public:
-
 	afx_msg void OnFileStart();
 	afx_msg void OnFileStop();
 	afx_msg void OnFileOpenConfiguration();
