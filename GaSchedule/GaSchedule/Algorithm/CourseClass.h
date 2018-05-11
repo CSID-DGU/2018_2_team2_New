@@ -36,9 +36,9 @@ private:
 	// Initicates wheather class requires computers
 	bool _requiresLab;
 
-	// Duration of class in hours
+	// Duration of cla ss in hours
 	int _duration;
-	
+
 public:
 
 	// Initializes class object
@@ -49,10 +49,10 @@ public:
 	~CourseClass();
 
 	// Returns TRUE if another class has one or overlapping student groups.
-	bool GroupsOverlap(const CourseClass& c ) const;
+	bool GroupsOverlap(const CourseClass& c) const;
 
 	// Returns TRUE if another class has same professor.
-	inline bool ProfessorOverlaps(const CourseClass& c ) const { return *_professor == *c._professor; }
+	inline bool ProfessorOverlaps(const CourseClass& c) const { return *_professor == *c._professor; }
 
 	// Return pointer to professor who teaches
 	inline const Professor& GetProfessor() const { return *_professor; }
@@ -69,7 +69,21 @@ public:
 	// Returns TRUE if class requires computers in room.
 	inline bool IsLabRequired() const { return _requiresLab; }
 
+	// 실습이 있는 수업인 경우 수업을 분할 해야함.
+	//inline int Division() const {return _}
+
 	// Returns duration of class in hours
-	inline int GetDuration() const { return _duration; }
+	
+	
+	inline int GetDuration() const
+	{ 
+		
+		if (_duration < 3)
+		// 30분 단위로 바꾸었기 때문에 *2를 해줌
+			return _duration * 2;
+		// 3시간이 넘는 수업이면 수업을 둘로 쪼갠다
+		else
+			return _duration;
+	}
 
 };
