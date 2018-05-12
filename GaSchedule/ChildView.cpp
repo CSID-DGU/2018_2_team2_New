@@ -534,11 +534,14 @@ public:
 class course {
 	string name;
 	int id;
+	string lab;
 public:
 	int getCourseID() { return id; }
 	string getCourseName() { return name; }
+	string getLab() { return lab; }
 	void setCourseID(int n) { id = n; }
 	void setCourseName(string s) { name = s; }
+	void setLab(string s) { lab = s; }
 };
 class c_class {
 	professor prof;
@@ -550,12 +553,14 @@ public:
 	string getDuration() { return duration; }
 	string getCourseName() { return cour.getCourseName(); }
 	int getCourseID() { return cour.getCourseID(); }
+	string getLab() { return cour.getLab(); }
 
 	void setProfName(string s) { prof.setProfName(s); }
 	void setProfID(int n) { prof.setProfID(n); }
 	void setDuration(string s) { duration = s; }
 	void setCourseID(int n) { cour.setCourseID(n); }
 	void setCourseName(string s) { cour.setCourseName(s); }
+	void setLab(string s) { cour.setLab(s); }
 };
 class room {
 	string name;
@@ -581,13 +586,14 @@ void CChildView::OnFileExcel()
 		CString name = ex.GetFileName().GetBuffer();
 		CString tmp = path + op + name;
 
-		string prof, duration, course, index, x;
+		string prof, duration, course, lab, index, x;
 		string room[200];
 		ifstream f(tmp);
 		getline(f, index, '\n');
 		while (f.good()) {
 			getline(f, course, ','); c[c_size].setCourseName(course);
 			getline(f, duration, ','); c[c_size].setDuration(duration);
+			getline(f, lab, ','); c[c_size].setLab(lab);
 			getline(f, prof, '\n'); c[c_size].setProfName(prof);
 			c_size++;
 		}
@@ -621,6 +627,7 @@ void CChildView::OnFileExcel()
 	}
 	int cn = 0; string overlap = c[0].getProfName();
 	ofstream outFile("output.txt");
+	outFile << endl;
 	for (int k = 0; k < c_size; k++) {
 		int p;
 		for (p = 0; p < k; p++) {
@@ -677,7 +684,7 @@ void CChildView::OnFileExcel()
 		outFile << "\tprofessor = " << c[k].getProfID() << endl;
 		outFile << "\tcourse = " << c[k].getCourseID() << endl;
 		outFile << "\tduration = " << c[k].getDuration() << endl;
-		outFile << "\tgroup = " << endl;
+		if(c[k].getLab() != "0") outFile << "\tlab = true" << endl;
 		outFile << "#end" << endl << endl;
 	}
 	outFile.close();

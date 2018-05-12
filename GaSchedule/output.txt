@@ -1,3 +1,4 @@
+
 #prof
 	id = 1
 	name = ½Å¿¬¼ø
@@ -374,433 +375,412 @@
 	professor = 1
 	course = 1
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 2
 	course = 2
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 3
 	course = 2
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 4
 	course = 3
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 4
 	course = 3
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 5
 	course = 4
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 6
 	course = 4
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 7
 	course = 4
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 8
 	course = 5
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 8
 	course = 5
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 9
 	course = 5
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 10
 	course = 5
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 4
 	course = 6
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 11
 	course = 6
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 12
 	course = 6
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 11
 	course = 6
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 13
 	course = 6
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 6
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 14
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 15
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 16
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 15
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 10
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 13
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 13
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 12
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 17
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 12
 	course = 7
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 18
 	course = 8
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 19
 	course = 8
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 19
 	course = 8
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 20
 	course = 9
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 20
 	course = 9
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 21
 	course = 10
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 21
 	course = 10
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 22
 	course = 11
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 9
 	course = 11
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 9
 	course = 11
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 24
 	course = 13
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 21
 	course = 13
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 25
 	course = 14
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 14
 	course = 14
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 26
 	course = 15
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 2
 	course = 16
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 7
 	course = 17
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 2
 	course = 18
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 18
 	course = 19
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 7
 	course = 20
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 22
 	course = 21
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 27
 	course = 21
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 23
 	course = 21
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 1
 	course = 21
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 26
 	course = 22
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 22
 	course = 23
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 26
 	course = 24
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 23
 	course = 24
 	duration = 3
-	group = 
+	lab = true
 #end
 
 #class
 	professor = 13
 	course = 25
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 19
 	course = 26
 	duration = 3
-	group = 
 #end
 
 #class
 	professor = 16
 	course = 27
 	duration = 2
-	group = 
+	lab = true
 #end
 
