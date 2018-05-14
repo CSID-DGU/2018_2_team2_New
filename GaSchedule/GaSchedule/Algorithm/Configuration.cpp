@@ -274,6 +274,7 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 		// 3시간 이상인 수업은 2개로 만든다.
 		if (dur >= 3)
 		{
+			dur /= 2;
 			CourseClass* cc1 = new CourseClass(p, c, groups, lab, dur);
 			_courseClasses.push_back(cc1);
 		}
