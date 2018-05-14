@@ -62,7 +62,7 @@ END_MESSAGE_MAP()
 
 // CChildView message handlers
 
-bool CChildView::PreCreateWindow(CREATESTRUCT& cs) //윈도우 스타일 변경 
+BOOLCChildView::PreCreateWindow(CREATESTRUCT& cs) //윈도우 스타일 변경 
 {
 	if (!CWnd::PreCreateWindow(cs))
 		return FALSE;//기본 
