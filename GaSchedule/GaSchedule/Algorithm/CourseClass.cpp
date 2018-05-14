@@ -20,14 +20,15 @@ CourseClass::CourseClass(Professor* professor, Course* course,
 {
 	// bind professor to class
 	_professor->AddCourseClass(this);
-
+	
+	// student groups과 관련된 사항은 모두 주석처리
 	// bind student groups to class
-	for (list<StudentsGroup*>::const_iterator it = groups.begin(); it != groups.end(); it++)
-	{
-		(*it)->AddClass(this);
-		_groups.push_back(*it);
-		_numberOfSeats += (*it)->GetNumberOfStudents();
-	}
+	//for (list<StudentsGroup*>::const_iterator it = groups.begin(); it != groups.end(); it++)
+	//{
+	//	(*it)->AddClass(this);
+	//	_groups.push_back(*it);
+	//	_numberOfSeats += (*it)->GetNumberOfStudents();
+	//}
 }
 
 // Frees used memory

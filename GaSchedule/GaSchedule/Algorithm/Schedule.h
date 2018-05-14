@@ -21,10 +21,13 @@ class CChildView;
 class Schedule;
 class Algorithm;
 
-// Number of working hours per day
-#define DAY_HOURS	12
+// Number of working half_hours per day
+// 30분 단위로 변경 12->24
+#define DAY_HOURS	24
 // Number of days in week
 #define DAYS_NUM	5
+// Number of Hard RequireMents
+#define Hard_Requirements 5
 
 enum AlgorithmState
 {
@@ -46,22 +49,22 @@ private:
 	CChildView* _window;
 
 	// Called when algorithm starts execution
-	inline void BlockEvent() { ResetEvent( _event ); }
+	inline void BlockEvent() { ResetEvent(_event); }
 
 	// Called when algorithm finishes execution
-	inline void ReleaseEvent() { SetEvent( _event ); }
+	inline void ReleaseEvent() { SetEvent(_event); }
 
 public:
 
 	// Initializes observer
-	ScheduleObserver() : _window(NULL) { _event = CreateEvent( NULL, TRUE, FALSE, NULL ); }
+	ScheduleObserver() : _window(NULL) { _event = CreateEvent(NULL, TRUE, FALSE, NULL); }
 
 	// Frees used resources
-	~ScheduleObserver() { CloseHandle( _event ); }
+	~ScheduleObserver() { CloseHandle(_event); }
 
 	// Block caller's thread until algorithm finishes execution
-	inline void WaitEvent() { WaitForSingleObject( _event, INFINITE ); }
-	
+	inline void WaitEvent() { WaitForSingleObject(_event, INFINITE); }
+
 	// Handles event that is raised when algorithm finds new best chromosome
 	void NewBestChromosome(const Schedule& newChromosome);
 
@@ -99,12 +102,14 @@ private:
 	// Flags of class requiroments satisfaction
 	vector<bool> _criteria;
 
-	// Time-space slots, one entry represent one hour in one classroom
+	// Time-space slots, one entry represent half hour in one classroom
 	vector<list<CourseClass*>> _slots;
 
 	// Class table for chromosome
 	// Used to determine first time-space slot used by class
+	
 	hash_map<CourseClass*, int> _classes;
+	
 
 public:
 
@@ -135,6 +140,7 @@ public:
 
 	// Returns reference to table of classes
 	inline const hash_map<CourseClass*, int>& GetClasses() const { return _classes; }
+
 
 	// Returns array of flags of class requiroments satisfaction
 	inline const vector<bool>& GetCriteria() const { return _criteria; }

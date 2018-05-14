@@ -262,23 +262,38 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 	// get professor who teaches class and course to which this class belongs
 	Professor* p = GetProfessorById(pid);
 	Course* c = GetCourseById(cid);
+	CourseClass* cc = new CourseClass(p, c, groups, lab, dur);
+	cc->_ClassCode = NULL;
 
 	// does professor and class exists
 	if (!c || !p)
 		return NULL;
+	
 
-	// make object and return pointer to it
-		CourseClass* cc = new CourseClass(p, c, groups, lab, dur);
-
-
-		// 3시간 이상인 수업은 2개로 만든다.
-		if (dur >= 3)
+		// 3시간 이상인 수업은 2개로 만든다.//컴퓨터공학종합설계1,2가 아니면
+		if (dur >= 3&& c->GetName()!="컴퓨터공학종합설계1"&&c->GetName() != "컴퓨터공학종합설계2")
 		{
-			dur /= 2;
+			//실습이 있는 수업은 3학점이라도 2시간씩 수업함
+			if (lab)
+				dur = 2;
+			// make object and return pointer to it
+			cc = new CourseClass(p, c, groups, lab, dur);
+			// 3시간 이상인 수업은 2개로 만든다.
 			CourseClass* cc1 = new CourseClass(p, c, groups, lab, dur);
 			_courseClasses.push_back(cc1);
-		}
 
+			// 서로 연결?
+			cc1->_ClassCode = cc;
+			cc->_ClassCode =cc1;
+		}
+		else if (dur >= 3 && (c->GetName() == "컴퓨터공학종합설계1"||c->GetName() == "컴퓨터공학종합설계2"))
+		{
+			//위 과목은 하루에 모두 소화
+			dur *= 2;
+			// make object and return pointer to it
+			cc = new CourseClass(p, c, groups, lab, dur);
+		}
+		
 	return cc;
 }
 

@@ -39,8 +39,13 @@ private:
 	// Duration of cla ss in hours
 	int _duration;
 
+	
+
 public:
 
+	//분할 수업인지 확인
+	CourseClass * _ClassCode;
+	
 	// Initializes class object
 	CourseClass(Professor* professor, Course* course, const list<StudentsGroup*>& groups,
 		bool requiresLab, int duration);
@@ -69,11 +74,11 @@ public:
 	// Returns TRUE if class requires computers in room.
 	inline bool IsLabRequired() const { return _requiresLab; }
 
-	// 실습이 있는 수업인 경우 수업을 분할 해야함.
-	//inline int Division() const {return _}
-
-	// Returns duration of class in hours
 	
+	//void SetCourseClass(CourseClass* code) const 
+	//{
+	//	ClassCode = code;
+	//}
 	
 	inline int GetDuration() const
 	{ 
@@ -85,5 +90,5 @@ public:
 		else
 			return _duration;
 	}
-
+	
 };
