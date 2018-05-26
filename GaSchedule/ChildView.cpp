@@ -7,6 +7,7 @@
 #include "Configuration.h"
 #include "Room.h"
 #include "Schedule.h"
+#include "MainFrm.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -142,6 +143,7 @@ void CChildView::OnPaint()
 
 	////////////////////////////////////////////////////////
 	int nr = Configuration::GetInstance().GetNumberOfRooms();
+
 	for (int k = 0; k < nr; k++)
 	{
 		for (int i = 0; i < ROOM_COLUMN_NUMBER; i++)
@@ -691,3 +693,61 @@ void CChildView::OnFileExcel()
 
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.http://yeobi27.tistory.com/entry/MFC-MFC%EC%97%90%EC%84%9C-Excel-%EC%82%AC%EC%9A%A9Automation-Class-%EC%99%80-ExcelFormat-Library?category=741605
 }
+
+void CMainFrame::OnTxtButton()
+{
+	CFileDialog dlg(TRUE, NULL, NULL, 0,
+		_T("Class Schedule Config Files (*.txt)|*.txt|All Files (*.*)|*.*||"));
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString name = dlg.GetFileName().GetBuffer();
+		char *temp = new char[name.GetLength()];
+		strcpy_s(temp, name.GetLength() + 1, CT2A(name));
+		Configuration::GetInstance().ParseFile(temp);
+
+		int nr = Configuration::GetInstance().GetNumberOfRooms();
+
+		int w = ROOM_TABLE_WIDTH;
+		if (nr == 0)
+			w = 0;
+		else if (nr > 1)
+			w *= 2;
+
+		int h = ((nr / 2) + nr % 2) * ROOM_TABLE_HEIGHT;
+
+		w += ROOM_MARGIN_WIDTH;
+		h += ROOM_MARGIN_HEIGHT;
+
+		CRect cr;
+		GetClientRect(cr);
+
+		SCROLLINFO hsi;
+		hsi.cbSize = sizeof(hsi);
+		hsi.fMask = SIF_RANGE | SIF_PAGE;
+		hsi.nMin = 0;
+		hsi.nMax = w;
+		hsi.nPage = cr.Width();
+
+		SetScrollInfo(SB_HORZ, &hsi, TRUE);
+
+		hsi.nMax = h;
+		hsi.nPage = cr.Height();
+
+		SetScrollInfo(SB_VERT, &hsi, TRUE);
+		Invalidate();
+	}
+}
+
+void CMainFrame::OnStartButton()
+{	
+	m_wndView.ShowWindow(SW_SHOW); //비활성화 시켜놓은 m_windView(자식뷰) 활성화
+	Button_excel.ShowWindow(SW_HIDE);
+	Button_txt.ShowWindow(SW_HIDE);
+	Button_start.ShowWindow(SW_HIDE); //스타트 버튼 클릭 시 버튼 비화활성
+
+	DWORD tid;
+	HANDLE thread = CreateThread(NULL, 0, StartAlg, NULL, 0, &tid);
+	CloseHandle(thread);
+}
+

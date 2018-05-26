@@ -26,7 +26,7 @@ public:
 
 	void SetNewState(AlgorithmState state);
 
-private:
+//private:
 
 	void ComputeScrollBars();
 

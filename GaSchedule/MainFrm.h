@@ -15,10 +15,6 @@ protected:
 	DECLARE_DYNAMIC(CMainFrame)
 
 	// Attributes
-public:
-
-	// Operations
-public:
 
 	// Overrides
 public:
@@ -31,19 +27,25 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+	CButton Button_excel;
+	CButton Button_txt;
+	CButton Button_start;
 
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CChildView    m_wndView;
-	/////////////////////
-	CButton Button_excel;
-	CButton Button_config;
+	CStatic m;
 	// Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSetFocus(CWnd *pOldWnd);
 	DECLARE_MESSAGE_MAP()
-	//afx_msg void OnExcelbutton();
+	afx_msg void OnUpdateButton(CCmdUI *pCmdUI);
+	afx_msg void OnExcelButton();
+	afx_msg void OnTxtButton();
+	afx_msg void OnStartButton();
+
+
 	//afx_msg BOOL CMainFrame::OnCommand(WPARAM wParam, LPARAM lParam)
 	//afx_msg void OnExcelbutton();
 };

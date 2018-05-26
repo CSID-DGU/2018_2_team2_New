@@ -14,7 +14,9 @@
 #define ID_FILE_OPEN_CONFIGURATION      32776
 #define ID_FILE_EXCEL                   32782
 #define ID_BUTTON_EXCEL					101
-#define ID_BUTTON_CONFIG				102
+#define ID_BUTTON_TXT					102
+#define ID_BT_UPDATE					150
+#define ID_BUTTON_START					103
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

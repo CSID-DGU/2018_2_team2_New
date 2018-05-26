@@ -3,8 +3,11 @@
 
 #include "stdafx.h"
 #include "GaSchedule.h"
-
 #include "MainFrm.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,10 +21,11 @@ IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_SETFOCUS()
-	//ON_COMMAND(ID_BUTTON_EXCEL, &CMainFrame::OnExcelbutton)
-//	ON_WM_MBUTTONDBLCLK()
-	//ON_COMMAND(ID_BUTTON_EXCEL, &CMainFrame::OnExcelbutton)
-	//ON_COMMAND(ID_BUTTON_EXCEL, &CMainFrame::OnCommand)
+	ON_BN_CLICKED(ID_BUTTON_EXCEL, &CMainFrame::OnExcelButton)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_EXCEL, &CMainFrame::OnUpdateButton)
+	ON_BN_CLICKED(ID_BUTTON_TXT, &CMainFrame::OnTxtButton)
+	ON_BN_CLICKED(ID_BUTTON_START, &CMainFrame::OnStartButton)
+	ON_COMMAND(ID_FILE_START, &CChildView::OnFileStart)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -43,32 +47,7 @@ CMainFrame::CMainFrame()
 CMainFrame::~CMainFrame()
 {
 }
-/////////////////////////////
-class MyButton : public CButton
-{
-	DECLARE_DYNAMIC(MyButton)
-public:
-	MyButton();
-	virtual ~MyButton();
-protected:
-	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClicked();
-};
 
-IMPLEMENT_DYNAMIC(MyButton, CButton)
-MyButton::MyButton() {}
-MyButton::~MyButton() {}
-
-BEGIN_MESSAGE_MAP(MyButton, CButton)
-	ON_CONTROL_REFLECT(BN_CLICKED, &MyButton::OnBnClicked)
-END_MESSAGE_MAP()
-
-void MyButton::OnBnClicked()
-{
-	AfxMessageBox(_T("나는 바보다"));
-}
-////////////////////////////
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
@@ -80,21 +59,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create view window\n");
 		return -1;
 	}
-	/////////////////////////////
-	Button_excel.Create("EXCEL", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 200, 600, 250), this, ID_BUTTON_EXCEL);
-	Button_excel.ShowWindow(SW_SHOW);
-	Button_config.Create("CONFIG", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 280, 600, 330), this, 102);
-	Button_config.ShowWindow(SW_SHOW);
-	
-	MyButton myButton;
-	myButton.Create(("dd"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 360, 600, 410), this, 103);
-	myButton.ShowWindow(SW_SHOW);
-	/*CDC dc; CString str;
-	CRect rect(200, 300, 500, 400);
-	str.Format(_T("Step 1. click the EXCEL button and select class.csg file"));
-	dc.DrawText(str, rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);*/
+	m_wndView.ShowWindow(SW_HIDE); //버튼을 만들기 위해 생성한 m_wndView(자식뷰) 비활성화
 
-	/////////////////////////////
+	Button_excel.Create("EXCEL", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 200, 600, 250), this, ID_BUTTON_EXCEL);
+	Button_excel.ShowWindow(SW_SHOW); //엑셀 버튼
+	Button_txt.Create("TXT", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 270, 600, 320), this, ID_BUTTON_TXT);
+	Button_txt.ShowWindow(SW_SHOW); //텍스트 버튼
+	Button_start.Create("START", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 340, 600, 390), this, ID_BUTTON_START);
+	Button_start.ShowWindow(SW_SHOW); //시간표 시작 버튼
+
+	//CPaintDC pDC(this);
+	//pDC.TextOutA(100, 100, "EXCEL step 1. 수업 정보 파일 선택");
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 			sizeof(indicators) / sizeof(UINT)))
@@ -102,7 +78,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-
+	
 	return 0;
 }
 
@@ -112,7 +88,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 		return FALSE;
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-
+	
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 	cs.lpszClass = AfxRegisterWndClass(0);
 	return TRUE;
@@ -154,24 +130,178 @@ BOOL CMainFrame::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO*
 }
 
 //////////////////////////////////////////////////////////////
-/*void CMainFrame::OnExcelbutton()
+void CMainFrame::OnUpdateButton(CCmdUI *pCmdUI)
 {
-	//if (wParam == 100)
-		AfxMessageBox(_T("나는 바보다"));
-}*/
+	pCmdUI->Enable(TRUE);
+} //버튼 활성화 함수
 
-/*
-BOOL CMainFrame::OnCommand(WPARAM wParam, LPARAM lParam)
+
+
+class professor {
+	string name;
+	int id;
+public:
+	int getProfID() { return id; }
+	string getProfName() { return name; }
+	void setProfName(string s) { name = s; }
+	void setProfID(int n) { id = n; }
+};
+class course {
+	string name;
+	int id;
+	string lab;
+public:
+	int getCourseID() { return id; }
+	string getCourseName() { return name; }
+	string getLab() { return lab; }
+	void setCourseID(int n) { id = n; }
+	void setCourseName(string s) { name = s; }
+	void setLab(string s) { lab = s; }
+};
+class c_class {
+	professor prof;
+	string duration;
+	course cour;
+public:
+	string getProfName() { return prof.getProfName(); }
+	int getProfID() { return prof.getProfID(); }
+	string getDuration() { return duration; }
+	string getCourseName() { return cour.getCourseName(); }
+	int getCourseID() { return cour.getCourseID(); }
+	string getLab() { return cour.getLab(); }
+
+	void setProfName(string s) { prof.setProfName(s); }
+	void setProfID(int n) { prof.setProfID(n); }
+	void setDuration(string s) { duration = s; }
+	void setCourseID(int n) { cour.setCourseID(n); }
+	void setCourseName(string s) { cour.setCourseName(s); }
+	void setLab(string s) { cour.setLab(s); }
+};
+class room {
+	string name;
+	string lab;
+	int size;
+public:
+	string getName() { return name; }
+	string getLab() { return lab; }
+	int getSize() { return size; }
+	void setName(string s) { name = s; }
+	void setLab(string s) { lab = s; }
+	void setSize(int s) { size = s; }
+};
+void CMainFrame::OnExcelButton()
 {
-	if (wParam == 100)
-		AfxMessageBox(_T("나는 바보다"));
-	return CFrameWnd::OnCommand(wParam, lParam);
+	CFileDialog ex(TRUE, NULL, NULL, 0,
+		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
+	c_class c[100]; int c_size = 0;
+	if (ex.DoModal() == IDOK)
+	{
+		CString path = ex.GetFolderPath().GetBuffer();
+		CString op("\\");
+		CString name = ex.GetFileName().GetBuffer();
+		CString tmp = path + op + name;
+
+		string prof, duration, course, lab, index, x;
+		string room[200];
+		ifstream f(tmp);
+		getline(f, index, '\n');
+		while (f.good()) {
+			getline(f, course, ','); c[c_size].setCourseName(course);
+			getline(f, duration, ','); c[c_size].setDuration(duration);
+			getline(f, lab, ','); c[c_size].setLab(lab);
+			getline(f, prof, '\n'); c[c_size].setProfName(prof);
+			c_size++;
+		}
+		c_size--;
+		f.close();
+	}
+
+	CFileDialog rr(TRUE, NULL, NULL, 0,
+		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
+	room r[100]; int r_size = 0;
+	if (rr.DoModal() == IDOK)
+	{
+		CString path = rr.GetFolderPath().GetBuffer();
+		CString op("\\");
+		CString name = rr.GetFileName().GetBuffer();
+		CString tmp = path + op + name;
+
+		string rname, lab, size, index, x;
+		ifstream f2(tmp);
+		getline(f2, index, '\n');
+		while (f2.good()) {
+			getline(f2, rname, ','); r[r_size].setName(rname);
+			getline(f2, lab, ',');
+			if (lab == "O") r[r_size].setLab("true");
+			else r[r_size].setLab("false");
+			getline(f2, size, '\n'); r[r_size].setSize(stoi(size));
+			r_size++;
+		}
+		r_size--;
+		f2.close();
+	}
+	int cn = 0; string overlap = c[0].getProfName();
+	ofstream outFile("output.txt");
+	outFile << endl;
+	for (int k = 0; k < c_size; k++) {
+		int p;
+		for (p = 0; p < k; p++) {
+			if (c[k].getProfName() == c[p].getProfName()) break;
+		}
+		if (k == p) {
+			cn++;
+			outFile << "#prof" << endl;
+			outFile << "\tid = " << cn << endl; c[k].setProfID(cn);
+			outFile << "\tname = " << c[k].getProfName() << endl;
+			outFile << "#end" << endl << endl;
+
+		}
+	}
+	for (int k = 1; k < c_size; k++) {
+		for (int q = 0; q < k; q++) {
+			if (c[q].getProfName() == c[k].getProfName()) {
+				int pid = c[q].getProfID();
+				c[k].setProfID(pid);
+			}
+		}
+	}
+	int cn2 = 0;
+	for (int k = 0; k < c_size; k++) {
+		int p;
+		for (p = 0; p < k; p++) {
+			if (c[k].getCourseName() == c[p].getCourseName()) break;
+		}
+		if (k == p) {
+			cn2++;
+			outFile << "#course" << endl;
+			outFile << "\tid = " << cn2 << endl; c[k].setCourseID(cn2);
+			outFile << "\tname = " << c[k].getCourseName() << endl;
+			outFile << "#end" << endl << endl;
+		}
+	}
+	for (int k = 1; k < c_size; k++) {
+		for (int q = 0; q < k; q++) {
+			if (c[q].getCourseName() == c[k].getCourseName()) {
+				int pid = c[q].getCourseID();
+				c[k].setCourseID(pid);
+			}
+		}
+	}
+	for (int k = 0; k < r_size; k++) {
+		outFile << "#room" << endl;
+		outFile << "\tname = " << r[k].getName() << endl;
+		outFile << "\tlab = " << r[k].getLab() << endl;
+		outFile << "\tsize = " << r[k].getSize() << endl;
+		outFile << "#end" << endl << endl;
+	}
+	for (int k = 0; k < c_size; k++) {
+		outFile << "#class" << endl;
+		outFile << "\tprofessor = " << c[k].getProfID() << endl;
+		outFile << "\tcourse = " << c[k].getCourseID() << endl;
+		outFile << "\tduration = " << c[k].getDuration() << endl;
+		if (c[k].getLab() != "0") outFile << "\tlab = true" << endl;
+		outFile << "#end" << endl << endl;
+	}
+	outFile.close();
 }
 
-/*
-afx_msg void CMainFrame::OnExcelbutton()
-{
-	//if (wParam == 100)
-		AfxMessageBox(_T("나는 바보다"));
-	//return 0;
-}*/
