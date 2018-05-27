@@ -74,9 +74,6 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&Open Configuration...\tCtrl+O", ID_FILE_OPEN_CONFIGURATION
-        MENUITEM "Excel",                       ID_FILE_EXCEL
-        MENUITEM SEPARATOR
         MENUITEM "&Start Solving\tCtrl+S",      ID_FILE_START
         MENUITEM "Sto&p Solving\tCtrl+P",       ID_FILE_STOP
         MENUITEM SEPARATOR

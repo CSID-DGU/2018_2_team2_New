@@ -54,17 +54,17 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_PAINT()
 	ON_COMMAND(ID_FILE_START, &CChildView::OnFileStart)
 	ON_COMMAND(ID_FILE_STOP, &CChildView::OnFileStop)
-	ON_COMMAND(ID_FILE_OPEN_CONFIGURATION, &CChildView::OnFileOpenConfiguration)
+	//ON_COMMAND(ID_FILE_OPEN_CONFIGURATION, &CChildView::OnFileOpenConfiguration)
 	ON_WM_ERASEBKGND()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_SIZE()
 	ON_WM_MOUSEWHEEL()
 	ON_WM_CLOSE()
-	ON_UPDATE_COMMAND_UI(ID_FILE_OPEN_CONFIGURATION, &CChildView::OnUpdateFileOpenConfiguration)
+	//ON_UPDATE_COMMAND_UI(ID_FILE_OPEN_CONFIGURATION, &CChildView::OnUpdateFileOpenConfiguration)
 	ON_UPDATE_COMMAND_UI(ID_FILE_START, &CChildView::OnUpdateFileStart)
 	ON_UPDATE_COMMAND_UI(ID_FILE_STOP, &CChildView::OnUpdateFileStop)
-	ON_COMMAND(ID_FILE_EXCEL, &CChildView::OnFileExcel)
+	//ON_COMMAND(ID_FILE_EXCEL, &CChildView::OnFileExcel)
 END_MESSAGE_MAP()
 
 // CChildView message handlers
@@ -139,9 +139,7 @@ void CChildView::OnPaint()
 	CBrush classBrush(RGB(255, 255, 245));
 	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
 	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
-	////////////////////////////////////////////////////////
-
-	////////////////////////////////////////////////////////
+	
 	int nr = Configuration::GetInstance().GetNumberOfRooms();
 
 	for (int k = 0; k < nr; k++)
@@ -350,7 +348,7 @@ void CChildView::OnFileStop()
 {
 	Algorithm::GetInstance().Stop();
 }
-
+/*
 void CChildView::OnFileOpenConfiguration()
 {
 	CFileDialog dlg(TRUE, NULL, NULL, 0,
@@ -367,7 +365,7 @@ void CChildView::OnFileOpenConfiguration()
 		Invalidate();
 	}
 }
-
+*/
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 	return false;
@@ -509,11 +507,11 @@ void CChildView::OnClose()
 	CWnd::OnClose();
 }
 
-void CChildView::OnUpdateFileOpenConfiguration(CCmdUI *pCmdUI)
+/*void CChildView::OnUpdateFileOpenConfiguration(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(!_running);
 }
-
+*/
 void CChildView::OnUpdateFileStart(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(!_running && !Configuration::GetInstance().IsEmpty());
@@ -523,7 +521,7 @@ void CChildView::OnUpdateFileStop(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(_running);
 }
-
+/*
 class professor {
 	string name;
 	int id;
@@ -575,8 +573,8 @@ public:
 	void setName(string s) { name = s; }
 	void setLab(string s) { lab = s; }
 	void setSize(int s) { size = s; }
-};
-void CChildView::OnFileExcel()
+};*/
+/*void CChildView::OnFileExcel()
 {
 	CFileDialog ex(TRUE, NULL, NULL, 0,
 		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
@@ -693,9 +691,10 @@ void CChildView::OnFileExcel()
 
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.http://yeobi27.tistory.com/entry/MFC-MFC%EC%97%90%EC%84%9C-Excel-%EC%82%AC%EC%9A%A9Automation-Class-%EC%99%80-ExcelFormat-Library?category=741605
 }
-
+*/
 void CMainFrame::OnTxtButton()
 {
+	m_rect2.Create(TEXT("STATIC"), TEXT("\n  TXT\n : output.txt 파일 선택"), WS_VISIBLE | WS_CHILD, CRect(700, 270, 950, 330), this, 1111);
 	CFileDialog dlg(TRUE, NULL, NULL, 0,
 		_T("Class Schedule Config Files (*.txt)|*.txt|All Files (*.*)|*.*||"));
 
@@ -744,7 +743,9 @@ void CMainFrame::OnStartButton()
 	m_wndView.ShowWindow(SW_SHOW); //비활성화 시켜놓은 m_windView(자식뷰) 활성화
 	Button_excel.ShowWindow(SW_HIDE);
 	Button_txt.ShowWindow(SW_HIDE);
-	Button_start.ShowWindow(SW_HIDE); //스타트 버튼 클릭 시 버튼 비화활성
+	Button_start.ShowWindow(SW_HIDE); //스타트 버튼 클릭 시 버튼 비활성화
+	m_rect.ShowWindow(SW_HIDE);
+	m_rect2.ShowWindow(SW_HIDE); //설명 비활성화
 
 	DWORD tid;
 	HANDLE thread = CreateThread(NULL, 0, StartAlg, NULL, 0, &tid);

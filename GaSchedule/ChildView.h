@@ -43,16 +43,16 @@ protected:
 public:
 	afx_msg void OnFileStart();
 	afx_msg void OnFileStop();
-	afx_msg void OnFileOpenConfiguration();
+	//afx_msg void OnFileOpenConfiguration();
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnClose();
-	afx_msg void OnUpdateFileOpenConfiguration(CCmdUI *pCmdUI);
+	//afx_msg void OnUpdateFileOpenConfiguration(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateFileStart(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateFileStop(CCmdUI *pCmdUI);
-	afx_msg void OnFileExcel();
+	//afx_msg void OnFileExcel();
 };
 

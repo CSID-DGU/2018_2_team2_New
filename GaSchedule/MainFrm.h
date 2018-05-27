@@ -30,7 +30,8 @@ public:
 	CButton Button_excel;
 	CButton Button_txt;
 	CButton Button_start;
-
+	CWnd m_rect;
+	CWnd m_rect2;
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CChildView    m_wndView;

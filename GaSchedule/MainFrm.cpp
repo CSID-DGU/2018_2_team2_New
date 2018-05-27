@@ -68,8 +68,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	Button_start.Create("START", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 340, 600, 390), this, ID_BUTTON_START);
 	Button_start.ShowWindow(SW_SHOW); //시간표 시작 버튼
 
+	//m_rect.Create(TEXT("STATIC"), TEXT("\n [PROGRAM USAGE]\n  EXCEL\n  step 1. 수업정보.csv 파일 선택 \n  step 2. 강의실정보.csv 파일 선택\n\n  TXT\n : output.txt 파일 선택\n\n  START\n : 버튼 클릭"), WS_VISIBLE | WS_CHILD, CRect(550, 200, 850, 390), this, 1111);
 	//CPaintDC pDC(this);
-	//pDC.TextOutA(100, 100, "EXCEL step 1. 수업 정보 파일 선택");
+    //pDC.TextOutA(600, 2 00, "EXCEL step 1. 수업 정보 파일 선택");
 
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
@@ -191,6 +192,7 @@ public:
 };
 void CMainFrame::OnExcelButton()
 {
+	m_rect.Create(TEXT("STATIC"), TEXT("\n EXCEL\n  step 1. 수업정보.csv 파일 선택 \n  step 2. 강의실정보.csv 파일 선택"), WS_VISIBLE | WS_CHILD, CRect(700, 200, 950, 300), this, 1111);
 	CFileDialog ex(TRUE, NULL, NULL, 0,
 		_T("Class Schedule Excel Files (*.csv)|*.csv|All Files (*.*)|*.*||"));
 	c_class c[100]; int c_size = 0;
