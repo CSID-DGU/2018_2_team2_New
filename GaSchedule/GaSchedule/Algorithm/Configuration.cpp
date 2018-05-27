@@ -277,12 +277,15 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 			if (lab)
 				dur = 2;
 			// make object and return pointer to it
-			cc = new CourseClass(p, c, groups, lab, dur);
+			cc = new CourseClass(p, c, groups, false , dur);
 			// 3시간 이상인 수업은 2개로 만든다.
 			CourseClass* cc1 = new CourseClass(p, c, groups, lab, dur);
 			_courseClasses.push_back(cc1);
-
-			// 서로 연결?
+		/*	cc->room_index = NULL;
+			cc->day_index = NULL;
+			cc1->room_index = NULL;
+			cc1->day_index = NULL;*/
+			// 서로 연결
 			cc1->_ClassCode = cc;
 			cc->_ClassCode =cc1;
 		}

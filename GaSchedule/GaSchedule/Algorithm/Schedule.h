@@ -112,6 +112,8 @@ private:
 	
 
 public:
+	int Divided_Setting(CourseClass* course, int& p, int& day, int& time, int& room);
+
 
 	// Initializes chromosomes with configuration block (setup of chromosome)
 	Schedule(int numberOfCrossoverPoints, int mutationSize,
@@ -147,6 +149,9 @@ public:
 
 	// Return reference to array of time-space slots
 	inline const vector<list<CourseClass*>>& GetSlots() const { return _slots; }
+
+	//분반 수업 setting
+	//int DividedSetting(const CourseClass* course, int& pos, int& day, int&time, int& nr);
 
 };
 
