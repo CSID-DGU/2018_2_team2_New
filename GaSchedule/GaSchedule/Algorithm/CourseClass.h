@@ -46,6 +46,10 @@ public:
 	//분할 수업인지 확인
 	CourseClass * _ClassCode;
 	
+	//해당 수업 교실, 시간
+	int room_index;
+	int day_index;
+
 	// Initializes class object
 	CourseClass(Professor* professor, Course* course, const list<StudentsGroup*>& groups,
 		bool requiresLab, int duration);

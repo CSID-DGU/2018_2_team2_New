@@ -105,7 +105,7 @@ Schedule* Schedule::MakeNewFromPrototype() const
 	// place classes at random position
 	const list<CourseClass*>& c = Configuration::GetInstance().GetCourseClasses();
 	
-	
+
 	//받아온 c의 모든 원소(수업정보)를 입력해준다.
 	for (list<CourseClass*>::const_iterator it = c.begin(); it != c.end(); it++)
 	{
@@ -123,8 +123,19 @@ Schedule* Schedule::MakeNewFromPrototype() const
 		int day = rand() % DAYS_NUM;
 		//룸 설정
 		int room = rand() % nr;
+
+		// 실험실이 필요한 수업한 실험실이 있는 교실로 배정
+		Room* temp_room = Configuration::GetInstance().GetRoomById(room);
+
+		while (temp_room->IsLab() != (*it)->IsLabRequired())
+		{
+			room = rand() % nr;
+			temp_room = Configuration::GetInstance().GetRoomById(room);		
+		}
+
+		//(*it)->room_index = room;
+		//(*it)->day_index = day;
 		//하루 스케줄(9시~20시 30분) 중에 어느 시간대에 배치할 것인지 설정
-		
 		
 
 		//점심시간대를 피하기 위한 코드
@@ -151,7 +162,7 @@ Schedule* Schedule::MakeNewFromPrototype() const
 			day = 3;
 			time = 12;
 		}
-
+		
 
 
 		// list index(list의 마지막 부분을 index로 설정) 설정
@@ -177,55 +188,38 @@ Schedule* Schedule::MakeNewFromPrototype() const
 		}
 		else 
 		{
-			for (list<CourseClass*>::const_iterator it1 = c.begin(); it1 != c.end(); it1++)
-			{
-				
-				if ((*it)->_ClassCode == (*it1))
-				{
-					
-					//int pos = day * nr * DAY_HOURS + room * DAY_HOURS + time;
-					int room_copy = (pos - (time + day * nr * DAY_HOURS)) / DAY_HOURS;
+			int daySize = DAY_HOURS * nr;
+			CourseClass* divided_class = (*it)->_ClassCode;
+			int pos1;
+			int day1;
+			int time1;
+			int room1;
 
-					int day1 = rand() % DAYS_NUM;
-					while (day1 == day && (day - day1 == 1 || day1 - day == 1))
-					{
-						day1 = rand() % DAYS_NUM;
-					}
+			if (newChromosome->Divided_Setting(divided_class, pos1, day1, time1, room1)==1)
+			{
+				Room* temp_room1 = Configuration::GetInstance().GetRoomById(room1);
+				// 실험 조건이 똑같을시 방 맞춰주기
+				if (room1 != room && temp_room1->IsLab()== temp_room->IsLab())
+				{
+					room = room1;
+				}
+
+				while (day1 == day || day - day1 == 1 || day1 - day == 1)
+				{
+					day = rand() % DAYS_NUM;
 				}
 
 			}
 			
-			//day1과 day가 동일하거나 하루 밖에 차이가 나지 않을 경우
-			//day1을 다시 설정
-			
-			
-			//점심시간대를 피하기 위한 코드
-			int time1 = rand() % (DAY_HOURS + 1 - dur);
-			if (dur == 4)
-			{
-				while (time1 >= 3 && time1 <= 7)
-					time1 = rand() % (DAY_HOURS + 1 - dur);
-			}
-			else if(dur<4)
-			{
-				while (time1 >= 4 && time1 <= 7)
-					time1 = rand() % (DAY_HOURS + 1 - dur);
-			}
-			int pos1;
-			if(day<2)
-				pos1 = (day+2) * nr * DAY_HOURS + room * DAY_HOURS + time1;
-			else
-				pos1 = (day - 2) * nr * DAY_HOURS + room * DAY_HOURS + time1;
-			
-
-			for (int i = dur - 1; i >= 0; i--) //거꾸로 입력함
-			{
-				newChromosome->_slots.at(pos + i).push_back(*it);
-				
-			}
-			newChromosome->_classes.insert(pair<CourseClass*, int>(*it, pos));
-			
+			pos = day * nr * DAY_HOURS + room * DAY_HOURS + time;	
 		}
+
+		for (int i = dur - 1; i >= 0; i--) //거꾸로 입력함
+		{
+			newChromosome->_slots.at(pos + i).push_back(*it);
+
+		}
+		newChromosome->_classes.insert(pair<CourseClass*, int>(*it, pos));
 	}
 
 	newChromosome->CalculateFitness();
@@ -240,14 +234,16 @@ Schedule* Schedule::Crossover(const Schedule& parent2) const
 {
 	// check probability of crossover operation
 	// 교차확률보다 클시 그냥 부모의 염색체를 return함
+	
 	if (rand() % 100 > _crossoverProbability)
 		// no crossover, just copy first parent
 		return new Schedule(*this, false);
 
+
 	// new chromosome object, copy chromosome setup
 	// 새로운 염색체를 생성
 	Schedule* n = new Schedule(*this, true);
-
+//	return n;
 	// number of classes
 	int size = (int)_classes.size();
 
@@ -307,6 +303,10 @@ Schedule* Schedule::Crossover(const Schedule& parent2) const
 		// 기존 부모, 받아온 부모 둘 다 한 칸씩 움직여준다.
 		it1++;
 		it2++;
+
+
+
+
 	}
 
 	n->CalculateFitness();
@@ -328,7 +328,6 @@ void Schedule::Mutation()
 	int numberOfClasses = (int)_classes.size();
 	// number of time-space slots
 	int size = (int)_slots.size();
-
 	// move selected number of classes at random position
 	for (int i = _mutationSize; i > 0; i--)
 	{
@@ -350,10 +349,16 @@ void Schedule::Mutation()
 		int dur = cc1->GetDuration();
 		int day = rand() % DAYS_NUM;
 		int room = rand() % nr;
-
+		Room* temp_room = Configuration::GetInstance().GetRoomById(room);
+		while (temp_room->IsLab() != cc1->IsLabRequired())
+		{
+			room = rand() % nr;
+			temp_room = Configuration::GetInstance().GetRoomById(room);
+		}
+	
 		int time = rand() % ((DAY_HOURS - 5) + 1 - dur);
 		if (dur == 4)
-		{//int time = 1;
+		{
 			while (time >= 3 && time <= 7)
 				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
 		}
@@ -377,6 +382,36 @@ void Schedule::Mutation()
 
 		int pos2 = day * nr * DAY_HOURS + room * DAY_HOURS + time;
 
+
+		if (cc1->_ClassCode != NULL)
+		{
+			int daySize = DAY_HOURS * nr;
+			CourseClass* divided_class = cc1->_ClassCode;
+			int pos;
+			int day1;
+			int time1;
+			int room1;
+
+			if (this->Divided_Setting(divided_class, pos, day1, time1, room1) == 1)
+			{
+				Room* temp_room1 = Configuration::GetInstance().GetRoomById(room1);
+				// 실험 조건이 똑같을시 방 맞춰주기
+				if (room1 != room && temp_room1->IsLab() == temp_room->IsLab())
+				{
+					room = room1;
+				}
+
+				while (day1 == day || day - day1 == 1 || day1 - day == 1)
+				{
+					day = rand() % DAYS_NUM;
+				}
+
+			}
+
+			pos2 = day * nr * DAY_HOURS + room * DAY_HOURS + time;
+		}
+	
+
 		// move all time-space slots
 		for (int i = dur - 1; i >= 0; i--)
 		{
@@ -399,10 +434,55 @@ void Schedule::Mutation()
 
 		// change entry of class table to point to new time-space slots
 		_classes[cc1] = pos2;
+		
 	}
 
 	CalculateFitness();
 }
+
+int Schedule::Divided_Setting(CourseClass* course,int& p, int& day, int& time, int& room)
+{
+	int numberOfRooms = Configuration::GetInstance().GetNumberOfRooms();
+	//하루 시간표 길이 설정
+	int daySize = DAY_HOURS * numberOfRooms;
+	hash_map<CourseClass*, int>::const_iterator it = _classes.begin();
+	for (; it != _classes.end(); ++it)
+	{
+		if ((*it).first == course)
+			break;
+	}
+		
+
+	if (it != _classes.end())
+	{
+		// coordinate of time-space slot
+		 p = (*it).second; //index를 입력 받으므로써 어디에 위치해 있는지 확인
+		 day = p / daySize;
+		// 해당 index를 daySize(하루 동안의 list 길이)로 나누면 
+		// index가 어느 요일인지 확일 할 수 있음
+		time = p % daySize;
+		//모듈 연산을 통해 나머지를 구하면 그 나머지가 해당 요일의 index가 됨
+		//예를 들어 방이 2개인 경우 daySize는 48이 된다.
+		//이때 p=49인 경우 49/48 = 1 이므로 화요일임을 알수 있고
+		//49%48=1이므로 화요일의 시작 index를 0이라고 생각했을 때
+		//p는 화요일 list에 1번 위치에 존재하고 있음을 할 수 있다.
+
+		room = time / DAY_HOURS;
+		// 0번 방의 하루 동안의 list의 index를 0~23이고 1번 방 list의 index를 24~47라고 했을 때
+		// 그 시간대를 하루 동안의 시간으로 나누면 방 번호를 알 수 있음
+		// 위의 예시를 이용하면 (time==1)/24 ==0 이므로 0번 방에 존재함을 알 수 있다.
+		time = time % DAY_HOURS;
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+		
+	
+
+}
+
 
 // Calculates fitness value of chromosome
 void Schedule::CalculateFitness()
@@ -564,6 +644,8 @@ Algorithm& Algorithm::GetInstance()
 		// make new global instance of algorithm using chromosome prototype
 		// 염색체 수 100, 새롭게 만드는 염색체 수 8, 가장 적합도 좋은 염색체 저장 수 5
 		_instance = new Algorithm(100, 8, 5, prototype, new ScheduleObserver());
+		//_instance = new Algorithm(200, 16, 10, prototype, new ScheduleObserver());
+	//	_instance = new Algorithm(1000, 80, 50, prototype, new ScheduleObserver());
 	}
 
 	return *_instance;
@@ -718,7 +800,7 @@ void Algorithm::Start()
 		// lock 해제
 		lock.Unlock();
 
-
+		
 		// produce offspring
 		// 자식 염색체 생성
 		vector<Schedule*> offspring;
@@ -732,7 +814,7 @@ void Algorithm::Start()
 			Schedule* p2 = _chromosomes[rand() % _chromosomes.size()];
 
 			//두 염색체를 교차시킴
-			offspring[j] = p1->Crossover(*p2);
+			offspring[j] =p1->Crossover(*p2);
 			//염색체에 변이를 줌
 			offspring[j]->Mutation();
 		}
