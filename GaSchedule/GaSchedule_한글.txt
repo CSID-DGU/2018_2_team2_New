@@ -1,0 +1,353 @@
+
+#prof
+	id = 1
+	name = 장태무
+#end
+
+#prof
+	id = 2
+	name = 오세만
+#end
+
+#prof
+	id = 3
+	name = 최은만
+#end
+
+#prof
+	id = 4
+	name = 김준태
+#end
+
+#prof
+	id = 5
+	name = 안종석
+#end
+
+#prof
+	id = 6
+	name = 이용규
+#end
+
+#prof
+	id = 7
+	name = 이강우
+#end
+
+#prof
+	id = 8
+	name = 문봉교
+#end
+
+#prof
+	id = 9
+	name = 정진우
+#end
+
+#prof
+	id = 10
+	name = 홍정모
+#end
+
+#prof
+	id = 11
+	name = 손윤식
+#end
+
+#prof
+	id = 12
+	name = 주종화
+#end
+
+#prof
+	id = 13
+	name = 주해종
+#end
+
+#course
+	id = 1
+	name = 컴퓨터구조
+#end
+
+#course
+	id = 2
+	name = 데이터베이스
+#end
+
+#course
+	id = 3
+	name = 형식언어
+#end
+
+#course
+	id = 4
+	name = 운영체제
+#end
+
+#course
+	id = 5
+	name = 컴퓨터알고리즘
+#end
+
+#course
+	id = 6
+	name = 자료구조
+#end
+
+#course
+	id = 7
+	name = 공개SW프로젝트
+#end
+
+#course
+	id = 8
+	name = 컴퓨터그래픽스
+#end
+
+#room
+	name = 3184
+	lab = true
+	size = 24
+#end
+
+#room
+	name = 6119
+	lab = false
+	size = 60
+#end
+
+#group
+	id = 1
+	name = 1O1
+	size = 19
+#end
+
+#group
+	id = 2
+	name = 1O2
+	size = 19
+#end
+
+#group
+	id = 3
+	name = 1O3
+	size = 19
+#end
+
+#group
+	id = 4
+	name = 1S1
+	size = 19
+#end
+
+#class
+	professor = 1
+	course = 1
+	duration = 2
+	group = 1
+	group = 2
+#end
+
+#class
+	professor = 1
+	course = 1
+	duration = 2
+	group = 3
+	group = 4
+#end
+
+#class
+	professor = 9
+	course = 1
+	duration = 3
+	group = 1
+	lab = true
+#end
+
+#class
+	professor = 9
+	course = 1
+	duration = 3
+	group = 2
+	lab = true
+#end
+
+#class
+	professor = 9
+	course = 1
+	duration = 3
+	group = 3
+	lab = true
+#end
+
+#class
+	professor = 9
+	course = 1
+	duration = 3
+	group = 4
+	lab = true
+#end
+
+#class
+	professor = 2
+	course = 2
+	duration = 2
+	group = 3
+	group = 4
+#end
+
+#class
+	professor = 2
+	course = 2
+	duration = 2
+	group = 1
+	group = 2
+#end
+
+#class
+	professor = 3
+	course = 2
+	duration = 2
+	group = 1
+	lab = true
+#end
+
+#class
+	professor = 3
+	course = 2
+	duration = 2
+	group = 2
+	lab = true
+#end
+
+#class
+	professor = 3
+	course = 2
+	duration = 2
+	group = 3
+	lab = true
+#end
+
+#class
+	professor = 3
+	course = 2
+	duration = 2
+	group = 4
+	lab = true
+#end
+
+#class
+	professor = 4
+	course = 4
+	duration = 2
+	group = 3
+	group = 4
+#end
+
+#class
+	professor = 4
+	course = 4
+	duration = 2
+	group = 3
+	group = 4
+#end
+
+#class
+	professor = 4
+	course = 4
+	duration = 2
+	group = 1
+	group = 2
+#end
+
+#class
+	professor = 4
+	course = 4
+	duration = 2
+	group = 1
+	group = 2
+#end
+
+#class
+	professor = 5
+	course = 6
+	duration = 2
+	group = 1
+	group = 2
+	group = 3
+#end
+
+#class
+	professor = 5
+	course = 6
+	duration = 2
+	group = 1
+	group = 2
+	group = 3
+#end
+
+#class
+	professor = 7
+	course = 5
+	duration = 2
+	group = 1
+	group = 2
+	group = 3
+#end
+
+#class
+	professor = 7
+	course = 5
+	duration = 2
+	group = 1
+	group = 2
+#end
+
+#class
+	professor = 10
+	course = 5
+	duration = 2
+	group = 3
+#end
+
+#class
+	professor = 8
+	course = 3
+	duration = 2
+	group = 2
+#end
+
+#class
+	professor = 8
+	course = 3
+	duration = 2
+	group = 3
+#end
+
+#class
+	professor = 12
+	course = 3
+	duration = 2
+	group = 1
+#end
+
+#class
+	professor = 12
+	course = 3
+	duration = 2
+	group = 4
+#end
+
+#class
+	professor = 11
+	course = 7
+	duration = 2
+	group = 4
+#end
+
+#class
+	professor = 13
+	course = 8
+	duration = 2
+	group = 4
+#end
