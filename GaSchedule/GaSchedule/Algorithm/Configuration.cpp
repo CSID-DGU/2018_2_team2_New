@@ -14,7 +14,7 @@
 #include "Room.h"
 #include "CourseClass.h"
 #include <hash_map>
-
+#include <string>
 Configuration Configuration::_instance;
 
 // Frees used resources
@@ -96,16 +96,6 @@ void Configuration::ParseFile(char* fileName)
 		else if (line.compare("#class") == 0)
 		{
 			CourseClass* c = ParseCourseClass(input);
-			
-			//if (c->GetDuration() <= 3 && c)
-			//{
-			//	Professor p = c->GetProfessor();
-			//	Course course = c->GetCourse();
-			//	//list<StudentsGroup*> groups = c->GetGroups();
-			//	CourseClass* c1 = new CourseClass(c->GetProfessor(), c->GetCourse(), c->GetGroups(), c->IsLabRequired(), c->GetDuration());
-			//	//CourseClass* cc = new CourseClass(p, c, groups, lab, dur);
-			//	_courseClasses.push_back(c1);
-			//}
 			if (c)
 				_courseClasses.push_back(c);
 		}
@@ -219,6 +209,7 @@ Room* Configuration::ParseRoom(ifstream& file)
 			lab = value.compare("true") == 0;
 		else if (key.compare("size") == 0)
 			number = atoi(value.c_str());
+	
 	}
 
 	// make object and return pointer to it
@@ -229,15 +220,16 @@ Room* Configuration::ParseRoom(ifstream& file)
 // Returns NULL if method cannot parse configuration data
 CourseClass* Configuration::ParseCourseClass(ifstream& file)
 {
-	int pid = 0, cid = 0, dur = 1;
+	int pid = 0, cid = 0, dur = 1,division=0;
 	bool lab = false;
-
+	string fixed,temp;
+	int fix_time=0;
 	list<StudentsGroup*> groups;
-
+	
 	while (!file.eof())
 	{
 		string key, value;
-
+		
 		// get key - value pair
 		if (!GetConfigBlockLine(file, key, value))
 			break;
@@ -257,19 +249,33 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 			if (g)
 				groups.push_back(g);
 		}
+		else if (key.compare("division") == 0)
+			division = atoi(value.c_str());
+		else if (key.compare("fixed") == 0)
+		{
+			fixed = value.c_str();
+			
+			temp.push_back(fixed[2]);
+			if(fixed.size()>3)
+				temp.push_back(fixed[3]);
+			fix_time = atoi(temp.c_str());
+		}
 	}
-
+	
 	// get professor who teaches class and course to which this class belongs
 	Professor* p = GetProfessorById(pid);
 	Course* c = GetCourseById(cid);
-	CourseClass* cc = new CourseClass(p, c, groups, lab, dur);
+	//if( temp !=NULL)
+		
+	//c->_name += fixed;
+	CourseClass* cc = new CourseClass(p, c, groups, lab, dur, division);
 	cc->_ClassCode = NULL;
 
+	
 	// does professor and class exists
 	if (!c || !p)
 		return NULL;
 	
-
 		// 3시간 이상인 수업은 2개로 만든다.//컴퓨터공학종합설계1,2가 아니면
 		if (dur >= 3&& c->GetName()!="컴퓨터공학종합설계1"&&c->GetName() != "컴퓨터공학종합설계2")
 		{
@@ -277,14 +283,14 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 			if (lab)
 				dur = 2;
 			// make object and return pointer to it
-			cc = new CourseClass(p, c, groups, false , dur);
+			if(rand()%2==0)
+				cc = new CourseClass(p, c, groups, false , dur,division);
+			else
+				cc = new CourseClass(p, c, groups, lab, dur, division);
 			// 3시간 이상인 수업은 2개로 만든다.
-			CourseClass* cc1 = new CourseClass(p, c, groups, lab, dur);
+			CourseClass* cc1 = new CourseClass(p, c, groups, lab, dur, division);
 			_courseClasses.push_back(cc1);
-		/*	cc->room_index = NULL;
-			cc->day_index = NULL;
-			cc1->room_index = NULL;
-			cc1->day_index = NULL;*/
+	
 			// 서로 연결
 			cc1->_ClassCode = cc;
 			cc->_ClassCode =cc1;
@@ -294,7 +300,22 @@ CourseClass* Configuration::ParseCourseClass(ifstream& file)
 			//위 과목은 하루에 모두 소화
 			dur *= 2;
 			// make object and return pointer to it
-			cc = new CourseClass(p, c, groups, lab, dur);
+			cc = new CourseClass(p, c, groups, lab, dur, cc->day_index);
+
+			if (fixed[0] == 'F')
+				cc->day_index = 4;
+			else if (fixed[0] == 'T')
+				cc->day_index = 3;
+			else if (fixed[0] == 'W')
+				cc->day_index = 2;
+			else if (fixed[0] == 't')
+				cc->day_index = 1;
+			else if (fixed[0] == 'M')
+				cc->day_index = 0;
+
+			if (fix_time != 0)
+				cc->time_index = fix_time;
+
 		}
 		
 	return cc;

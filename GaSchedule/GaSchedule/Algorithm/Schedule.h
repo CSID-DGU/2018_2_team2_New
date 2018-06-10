@@ -41,6 +41,7 @@ class ScheduleObserver
 {
 
 private:
+	
 
 	// Event that blocks caller until algorithm finishes execution 
 	HANDLE _event;
@@ -81,7 +82,8 @@ class Schedule
 {
 
 	friend class ScheduleObserver;
-
+public:
+	int room_count = 1;
 private:
 
 	// Number of crossover points of parent's class tables
