@@ -17,7 +17,7 @@ using namespace std;
 // CMainFrame
 
 IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)
-
+static int prof_max;
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_SETFOCUS()
@@ -259,11 +259,12 @@ void CMainFrame::OnExcelButton()
 
 		}
 	}
+	prof_max = 0;
 	for (int k = 1; k < c_size; k++) {
 		for (int q = 0; q < k; q++) {
 			if (c[q].getProfName() == c[k].getProfName()) {
 				int pid = c[q].getProfID();
-				c[k].setProfID(pid);
+				c[k].setProfID(pid); prof_max++;
 			}
 		}
 	}

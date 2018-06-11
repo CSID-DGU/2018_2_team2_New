@@ -16,6 +16,7 @@
 #include "Room.h"
 #include <cmath>
 
+
 // Handles event that is raised when algorithm finds new best chromosome
 void ScheduleObserver::NewBestChromosome(const Schedule& newChromosome)
 {
