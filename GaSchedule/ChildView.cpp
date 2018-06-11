@@ -136,20 +136,27 @@ void CChildView::OnPaint()
 		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
 		_T("Arial"));
 
-	CBrush classBrush(RGB(255, 255, 245));
-	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
-	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
-	
+	CBrush classBrush(RGB(255, 223, 206));//시간표 색깔 
+	CPen classPen(PS_NULL, 1, RGB(255, 223, 206));//시간표 선
+	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));//겹치는 부분 색 
+	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));//겹치는 부분 선 
+	CPen rectPen(PS_SOLID, 1, RGB(224, 224, 224));// 틀 선
+	CBrush rectBrush(RGB(224, 224, 224));//틀 색
+
 	int nr = Configuration::GetInstance().GetNumberOfRooms();
 
+	dc.SelectObject(&rectPen);
+	dc.SelectObject(&rectBrush);
 	for (int k = 0; k < nr; k++)
 	{
+		
 		for (int i = 0; i < ROOM_COLUMN_NUMBER; i++)
 		{
 			for (int j = 0; j < ROOM_ROW_NUMBER; j++)
 			{
 				int l = k % 2;
 				int m = k / 2;
+
 
 				CRect rect(
 					sx + ROOM_TABLE_WIDTH * l + ROOM_MARGIN_WIDTH + i * ROOM_CELL_WIDTH - 1,
@@ -224,6 +231,7 @@ void CChildView::OnPaint()
 	}
 
 	dc.SelectObject(&classBrush);
+	dc.SelectObject(&classPen);
 
 	CSingleLock lock(&_sect, TRUE);
 
