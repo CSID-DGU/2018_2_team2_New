@@ -141,7 +141,7 @@ Schedule* Schedule::MakeNewFromPrototype() const
 		//점심시간대를 피하기 위한 코드
 		int time = rand() % ((DAY_HOURS-5) + 1 - dur);
 		if (dur == 4)
-		{//int time = 1;
+		{
 			while (time >= 3 && time <= 7)
 				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
 		}
@@ -152,15 +152,22 @@ Schedule* Schedule::MakeNewFromPrototype() const
 		}
 
 		//특정 과목 시간 고정
-		if (course_name == "컴퓨터공학종합설계1")
+		if (course_name == "컴퓨터공학종합설계1"|| course_name == "컴퓨터공학종합설계2")
 		{
-			day = 4;
-			time = 12;
+			//day = 4;
+			//time = 8;
+			
+			day = (*it)->day_index;
+			time = ((*it)->time_index - 9)*2;
 		}
-		else if (course_name == "컴퓨터공학종합설계2")
+		else
 		{
-			day = 3;
-			time = 12;
+			//if (day == this->day_index && time >= 4 && time <= 13)
+			if (day == (*it)->day_index && time >= 4 && time <= ((*it)->time_index - 9) * 2 *2+dur)
+			{
+				day = rand() % DAYS_NUM;
+				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
+			}
 		}
 		
 
@@ -206,9 +213,18 @@ Schedule* Schedule::MakeNewFromPrototype() const
 
 				while (day1 == day || day - day1 == 1 || day1 - day == 1)
 				{
-					day = rand() % DAYS_NUM;
+					day = rand() % (DAYS_NUM);
 				}
 
+				if ((*it)->IsLabRequired())
+				{
+					while ((day1 == day || day - day1 == 1 || day1 - day == 1) && day == (*it)->day_index && time >= 4 && time <= ((*it)->time_index - 9) * 2 + dur)
+					{
+						day = rand() % DAYS_NUM;
+						time = rand() % ((DAY_HOURS - 5) + 1 - dur);
+					}
+				}
+				
 			}
 			
 			pos = day * nr * DAY_HOURS + room * DAY_HOURS + time;	
@@ -235,7 +251,7 @@ Schedule* Schedule::Crossover(const Schedule& parent2) const
 	// check probability of crossover operation
 	// 교차확률보다 클시 그냥 부모의 염색체를 return함
 	
-	//if (rand() % 100 > _crossoverProbability)
+		if (rand() % 100 > _crossoverProbability)
 		// no crossover, just copy first parent
 		return new Schedule(*this, false);
 
@@ -357,7 +373,7 @@ void Schedule::Mutation()
 		}
 	
 		int time = rand() % ((DAY_HOURS - 5) + 1 - dur);
-		if (dur == 4)
+		if (dur == cc1->day_index)
 		{
 			while (time >= 3 && time <= 7)
 				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
@@ -368,17 +384,21 @@ void Schedule::Mutation()
 				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
 		}
 
-		if ((cc1)->GetCourse().GetName() == "컴퓨터공학종합설계1")
+		if ((cc1)->GetCourse().GetName() == "컴퓨터공학종합설계1"|| (cc1)->GetCourse().GetName() == "컴퓨터공학종합설계2")
 		{
-			day = 4;
-			time = 12;
+			day = cc1->day_index;
+			time = (cc1->time_index-9)*2;
 		}
-		else if ((cc1)->GetCourse().GetName() == "컴퓨터공학종합설계2")
+		else
 		{
-			day = 4;
-			time = 12;
+			if (day == 4 && time >= 4 && time <= (cc1->time_index - 9) * 2 + dur)
+			{
+				day = rand() % DAYS_NUM;
+				time = rand() % ((DAY_HOURS - 5) + 1 - dur);
+			}
 		}
-
+		
+	
 
 		int pos2 = day * nr * DAY_HOURS + room * DAY_HOURS + time;
 
@@ -403,9 +423,19 @@ void Schedule::Mutation()
 
 				while (day1 == day || day - day1 == 1 || day1 - day == 1)
 				{
-					day = rand() % DAYS_NUM;
+						day = rand() % (DAYS_NUM);
 				}
 
+				if (cc1->IsLabRequired())
+				{
+					while ((day1 == day || day - day1 == 1 || day1 - day == 1) && day == cc1->day_index && time >= 4 && time <= (cc1->time_index - 9) * 2 + dur)
+					{
+						day = rand() % DAYS_NUM;
+						time = rand() % ((DAY_HOURS - 5) + 1 - dur);
+					
+					}
+				}
+				
 			}
 
 			pos2 = day * nr * DAY_HOURS + room * DAY_HOURS + time;
@@ -639,12 +669,12 @@ Algorithm& Algorithm::GetInstance()
 		// make prototype of chromosomes
 		// Schedule 객체 생성 
 		// 교차점 2, 돌연변이 크기 2, 교차확률 80, 돌연변이 확률3
-		Schedule* prototype = new Schedule(2, 2, 80, 3);
+		Schedule* prototype = new Schedule(2, 2, 0, 100);
 
 		// make new global instance of algorithm using chromosome prototype
 		// 염색체 수 100, 새롭게 만드는 염색체 수 8, 가장 적합도 좋은 염색체 저장 수 5
 		//_instance = new Algorithm(100, 8, 5, prototype, new ScheduleObserver());
-		_instance = new Algorithm(200, 50, 10, prototype, new ScheduleObserver());
+		_instance = new Algorithm(100, 100, 5, prototype, new ScheduleObserver());
 	//	_instance = new Algorithm(1000, 80, 50, prototype, new ScheduleObserver());
 	}
 

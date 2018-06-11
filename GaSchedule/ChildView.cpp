@@ -136,11 +136,17 @@ void CChildView::OnPaint()
 		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
 		_T("Arial"));
 
-	CBrush classBrush(RGB(255, 255, 245));
+	CBrush classBrush(RGB(255, 228, 181));//시간표(과목 색)
+	CPen classPen(PS_SOLID, 1, RGB(255, 228, 181));//시간표 틀 
 	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
 	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
-	
+	CBrush weekBrush(RGB(224, 224, 224));//요일 시간(색)
+	CPen weekPen(PS_SOLID, 1, RGB(224, 224, 224));//요일 시간 틀
+
 	int nr = Configuration::GetInstance().GetNumberOfRooms();
+
+	dc.SelectObject(&weekBrush);
+	dc.SelectObject(&weekPen);
 
 	for (int k = 0; k < nr; k++)
 	{
@@ -224,6 +230,7 @@ void CChildView::OnPaint()
 	}
 
 	dc.SelectObject(&classBrush);
+	dc.SelectObject(&classPen);
 
 	CSingleLock lock(&_sect, TRUE);
 

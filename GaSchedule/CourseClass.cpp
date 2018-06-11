@@ -11,12 +11,13 @@
 
 // Initializes class object
 CourseClass::CourseClass(Professor* professor, Course* course, 
-	const list<StudentsGroup*>& groups, bool requiresLab, int duration) :
+	const list<StudentsGroup*>& groups, bool requiresLab, int duration, int division) :
 	_professor(professor),
 	_course(course),
 	_numberOfSeats(0),
 	_requiresLab(requiresLab),
-	_duration(duration)
+	_duration(duration),
+	_division(division)
 {
 	// bind professor to class
 	_professor->AddCourseClass(this);

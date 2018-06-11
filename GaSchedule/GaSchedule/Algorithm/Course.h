@@ -1,3 +1,4 @@
+#pragma once
 
 ////////////////////////////////////
 // (C)2007-2008 Coolsoft Company. //
@@ -20,11 +21,13 @@ private:
 
 	// Course ID
 	int _id;
-
 	// Course name
 	string _name;
+	
 
 public:
+
+	
 
 	// Initializes course
 	Course(int id, const string& name);

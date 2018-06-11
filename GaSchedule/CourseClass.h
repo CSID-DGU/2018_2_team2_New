@@ -39,7 +39,8 @@ private:
 	// Duration of cla ss in hours
 	int _duration;
 
-	
+	//분반 표시
+	int _division;
 
 public:
 
@@ -49,10 +50,10 @@ public:
 	//해당 수업 교실, 시간
 	int room_index;
 	int day_index;
-
+	int time_index;
 	// Initializes class object
 	CourseClass(Professor* professor, Course* course, const list<StudentsGroup*>& groups,
-		bool requiresLab, int duration);
+		bool requiresLab, int duration,int division);
 
 	// Frees used memory
 	~CourseClass();
@@ -77,12 +78,9 @@ public:
 
 	// Returns TRUE if class requires computers in room.
 	inline bool IsLabRequired() const { return _requiresLab; }
-
+	// 분반번호 호출
+	inline int GetDivision() const { return _division; }
 	
-	//void SetCourseClass(CourseClass* code) const 
-	//{
-	//	ClassCode = code;
-	//}
 	
 	inline int GetDuration() const
 	{ 
