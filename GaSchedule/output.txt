@@ -382,24 +382,28 @@
 	professor = 2
 	course = 2
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 3
 	course = 2
 	duration = 3
+	division = 2
 #end
 
 #class
 	professor = 4
 	course = 3
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 4
 	course = 3
 	duration = 3
+	division = 2
 #end
 
 #class
@@ -407,6 +411,7 @@
 	course = 4
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -414,6 +419,7 @@
 	course = 4
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -421,6 +427,7 @@
 	course = 4
 	duration = 3
 	lab = true
+	division = 3
 #end
 
 #class
@@ -428,6 +435,7 @@
 	course = 5
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -435,6 +443,7 @@
 	course = 5
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -442,6 +451,7 @@
 	course = 5
 	duration = 3
 	lab = true
+	division = 3
 #end
 
 #class
@@ -449,36 +459,42 @@
 	course = 5
 	duration = 3
 	lab = true
+	division = 4
 #end
 
 #class
 	professor = 4
 	course = 6
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 11
 	course = 6
 	duration = 3
+	division = 2
 #end
 
 #class
 	professor = 12
 	course = 6
 	duration = 3
+	division = 3
 #end
 
 #class
 	professor = 11
 	course = 6
 	duration = 3
+	division = 4
 #end
 
 #class
 	professor = 13
 	course = 6
 	duration = 3
+	division = 5
 #end
 
 #class
@@ -486,6 +502,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -493,6 +510,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -500,6 +518,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 3
 #end
 
 #class
@@ -507,6 +526,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 4
 #end
 
 #class
@@ -514,6 +534,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 5
 #end
 
 #class
@@ -521,6 +542,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 6
 #end
 
 #class
@@ -528,6 +550,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 7
 #end
 
 #class
@@ -535,6 +558,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 8
 #end
 
 #class
@@ -542,6 +566,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 9
 #end
 
 #class
@@ -549,6 +574,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 10
 #end
 
 #class
@@ -556,6 +582,7 @@
 	course = 7
 	duration = 3
 	lab = true
+	division = 11
 #end
 
 #class
@@ -563,6 +590,7 @@
 	course = 8
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -570,6 +598,7 @@
 	course = 8
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -577,6 +606,7 @@
 	course = 8
 	duration = 3
 	lab = true
+	division = 3
 #end
 
 #class
@@ -584,6 +614,7 @@
 	course = 9
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -591,6 +622,7 @@
 	course = 9
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -598,6 +630,7 @@
 	course = 10
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -605,6 +638,7 @@
 	course = 10
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -612,6 +646,7 @@
 	course = 11
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -619,6 +654,7 @@
 	course = 11
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class
@@ -626,48 +662,56 @@
 	course = 11
 	duration = 3
 	lab = true
+	division = 3
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
+	division = 2
 #end
 
 #class
 	professor = 23
 	course = 12
 	duration = 3
+	division = 3
 #end
 
 #class
 	professor = 24
 	course = 13
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 21
 	course = 13
 	duration = 3
+	division = 2
 #end
 
 #class
 	professor = 25
 	course = 14
 	duration = 3
+	division = 1
 #end
 
 #class
 	professor = 14
 	course = 14
 	duration = 3
+	division = 2
 #end
 
 #class
@@ -714,6 +758,8 @@
 	course = 21
 	duration = 3
 	lab = true
+	division = 1
+	fixed = 요일-시간
 #end
 
 #class
@@ -721,6 +767,8 @@
 	course = 21
 	duration = 3
 	lab = true
+	division = 2
+	fixed = 요일-시간
 #end
 
 #class
@@ -728,6 +776,8 @@
 	course = 21
 	duration = 3
 	lab = true
+	division = 3
+	fixed = 요일-시간
 #end
 
 #class
@@ -735,6 +785,8 @@
 	course = 21
 	duration = 3
 	lab = true
+	division = 4
+	fixed = 요일-시간
 #end
 
 #class
@@ -742,6 +794,7 @@
 	course = 22
 	duration = 3
 	lab = true
+	fixed = 요일-시간
 #end
 
 #class
@@ -756,6 +809,7 @@
 	course = 24
 	duration = 3
 	lab = true
+	division = 1
 #end
 
 #class
@@ -763,6 +817,7 @@
 	course = 24
 	duration = 3
 	lab = true
+	division = 2
 #end
 
 #class

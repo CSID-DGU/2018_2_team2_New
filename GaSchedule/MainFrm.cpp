@@ -61,9 +61,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndView.ShowWindow(SW_HIDE); //버튼을 만들기 위해 생성한 m_wndView(자식뷰) 비활성화
 
-	Button_excel.Create("EXCEL", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 200, 600, 250), this, ID_BUTTON_EXCEL);
+	Button_excel.Create("Convert_data", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 200, 600, 250), this, ID_BUTTON_EXCEL);
 	Button_excel.ShowWindow(SW_SHOW); //엑셀 버튼
-	Button_txt.Create("TXT", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 270, 600, 320), this, ID_BUTTON_TXT);
+	Button_txt.Create("Load_data", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 270, 600, 320), this, ID_BUTTON_TXT);
 	Button_txt.ShowWindow(SW_SHOW); //텍스트 버튼
 	Button_start.Create("START", WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON, CRect(400, 340, 600, 390), this, ID_BUTTON_START);
 	Button_start.ShowWindow(SW_SHOW); //시간표 시작 버튼
@@ -136,8 +136,6 @@ void CMainFrame::OnUpdateButton(CCmdUI *pCmdUI)
 	pCmdUI->Enable(TRUE);
 } //버튼 활성화 함수
 
-
-
 class professor {
 	string name;
 	int id;
@@ -151,13 +149,19 @@ class course {
 	string name;
 	int id;
 	string lab;
+	string div;
+	string fix;
 public:
 	int getCourseID() { return id; }
 	string getCourseName() { return name; }
 	string getLab() { return lab; }
+	string getDiv() { return div; }
+	string getFix() { return fix; }
 	void setCourseID(int n) { id = n; }
 	void setCourseName(string s) { name = s; }
 	void setLab(string s) { lab = s; }
+	void setDiv(string s) { div = s; }
+	void setFix(string s) { fix = s; }
 };
 class c_class {
 	professor prof;
@@ -170,6 +174,8 @@ public:
 	string getCourseName() { return cour.getCourseName(); }
 	int getCourseID() { return cour.getCourseID(); }
 	string getLab() { return cour.getLab(); }
+	string getDiv() { return cour.getDiv(); }
+	string getFix() { return cour.getFix(); }
 
 	void setProfName(string s) { prof.setProfName(s); }
 	void setProfID(int n) { prof.setProfID(n); }
@@ -177,6 +183,8 @@ public:
 	void setCourseID(int n) { cour.setCourseID(n); }
 	void setCourseName(string s) { cour.setCourseName(s); }
 	void setLab(string s) { cour.setLab(s); }
+	void setDiv(string s) { cour.setDiv(s); }
+	void setFix(string s) { cour.setFix(s); }
 };
 class room {
 	string name;
@@ -203,7 +211,7 @@ void CMainFrame::OnExcelButton()
 		CString name = ex.GetFileName().GetBuffer();
 		CString tmp = path + op + name;
 
-		string prof, duration, course, lab, index, x;
+		string prof, duration, course, lab, index, x, div, fix;
 		string room[200];
 		ifstream f(tmp);
 		getline(f, index, '\n');
@@ -211,7 +219,9 @@ void CMainFrame::OnExcelButton()
 			getline(f, course, ','); c[c_size].setCourseName(course);
 			getline(f, duration, ','); c[c_size].setDuration(duration);
 			getline(f, lab, ','); c[c_size].setLab(lab);
-			getline(f, prof, '\n'); c[c_size].setProfName(prof);
+			getline(f, prof, ','); c[c_size].setProfName(prof);
+			getline(f, div, ','); c[c_size].setDiv(div);
+			getline(f, fix, '\n'); c[c_size].setFix(fix);
 			c_size++;
 		}
 		c_size--;
@@ -302,8 +312,12 @@ void CMainFrame::OnExcelButton()
 		outFile << "\tcourse = " << c[k].getCourseID() << endl;
 		outFile << "\tduration = " << c[k].getDuration() << endl;
 		if (c[k].getLab() != "0") outFile << "\tlab = true" << endl;
+		if (c[k].getDiv() != "0") outFile << "\tdivision = " << c[k].getDiv() << endl;
+		if (c[k].getFix() != "/") outFile << "\tfixed = " << c[k].getFix() << endl;
 		outFile << "#end" << endl << endl;
 	}
+
 	outFile.close();
 }
+
 
