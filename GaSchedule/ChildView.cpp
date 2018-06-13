@@ -137,19 +137,34 @@ void CChildView::OnPaint()
 		_T("Arial"));
 
 	CBrush classBrush(RGB(255, 228, 181));//시간표(과목 색)
-	CBrush classBrush_a(RGB(255, 216, 216));//장태무 교수님
-	CBrush classBrush_b(RGB(250, 224, 212));//오세만 교수님
-	CBrush classBrush_c(RGB(255, 224, 140));//최은만 교수님
-	CBrush classBrush_d(RGB(228, 247, 186));//김준태 교수님
-	CBrush classBrush_e(RGB(206, 251, 201));//안종석 교수님
-	CBrush classBrush_f(RGB(212, 244, 250));//이용규 교수님
-	CBrush classBrush_g(RGB(218, 217, 255));//이강우 교수님
-	CBrush classBrush_h(RGB(255, 217, 250));//문봉교 교수님
-	CBrush classBrush_i(RGB(255, 217, 236));//정진우 교수님
-	CBrush classBrush_j(RGB(234, 234, 234));//홍정모 교수님
-	CBrush classBrush_k(RGB(255, 167, 167));//손윤식 교수님
-	CBrush classBrush_l(RGB(250, 237, 125));//주종화 교수님
-	CBrush classBrush_m(RGB(181, 178, 255));//주해종 교수님
+	CBrush classBrush_a(RGB(255, 216, 216));//신연순 교수님
+	CBrush classBrush_b(RGB(250, 224, 212));//문봉교 교수님
+	CBrush classBrush_c(RGB(255, 224, 140));//최성연 교수님
+	CBrush classBrush_d(RGB(228, 247, 186));//주태우 교수님
+	CBrush classBrush_e(RGB(206, 251, 201));//주해종 교수님
+	CBrush classBrush_f(RGB(206, 251, 201));//이명숙 교수님
+	CBrush classBrush_g(RGB(212, 244, 250));//최은만 교수님
+	CBrush classBrush_h(RGB(218, 217, 255));//오세만 교수님
+	CBrush classBrush_i(RGB(255, 217, 250));//주종화 교수님
+	CBrush classBrush_j(RGB(255, 217, 236));//윤성림 교수님
+	CBrush classBrush_k(RGB(234, 234, 234));//김경자 교수님
+	CBrush classBrush_l(RGB(255, 167, 167));//엄진영 교수님
+	CBrush classBrush_m(RGB(250, 237, 125));//장은실 교수님
+	CBrush classBrush_n(RGB(181, 178, 255));//송양의 교수님
+	CBrush classBrush_o(RGB(241,95,95));//김시명 교수님
+	CBrush classBrush_p(RGB(242,150,97));//이호정 교수님
+	CBrush classBrush_q(RGB(242,203,97));//홍성욱 교수님
+	CBrush classBrush_r(RGB(229,216,92));//홍정모 교수님
+	CBrush classBrush_s(RGB(188,229,92));//김가영 교수님
+	CBrush classBrush_t(RGB(134,229,127));//장태무 교수님
+	CBrush classBrush_u(RGB(92,209,229));//정준호 교수님
+	CBrush classBrush_v(RGB(103,153,255));//정진우 교수님
+	CBrush classBrush_w(RGB(107,102,255));//손윤식 교수님
+	CBrush classBrush_x(RGB(165,102,255));//이강우 교수님
+	CBrush classBrush_y(RGB(243,97,220));//박미화 교수님
+	CBrush classBrush_z(RGB(243,97,166));//김동호 교수님
+	CBrush classBrush_az(RGB(140,140,140));//이용규 교수님
+	
 	CPen classPen(PS_SOLID, 1, RGB(224, 224, 224));//시간표 틀 
 	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
 	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
@@ -289,8 +304,38 @@ void CChildView::OnPaint()
 				dc.SelectObject(&classBrush_k);
 			else if (pid == 12)
 				dc.SelectObject(&classBrush_l);
-			else
+			else if (pid == 13)
 				dc.SelectObject(&classBrush_m);
+			else if (pid == 14)
+				dc.SelectObject(&classBrush_n);
+			else if (pid == 15)
+				dc.SelectObject(&classBrush_o);
+			else if (pid == 16)
+				dc.SelectObject(&classBrush_p);
+			else if (pid == 17)
+				dc.SelectObject(&classBrush_q);
+			else if (pid == 18)
+				dc.SelectObject(&classBrush_r);
+			else if (pid == 19)
+				dc.SelectObject(&classBrush_s);
+			else if (pid == 20)
+				dc.SelectObject(&classBrush_t);
+			else if (pid == 21)
+				dc.SelectObject(&classBrush_u);
+			else if (pid == 22)
+				dc.SelectObject(&classBrush_v);
+			else if (pid == 23)
+				dc.SelectObject(&classBrush_w);
+			else if (pid == 24)
+				dc.SelectObject(&classBrush_x);
+			else if (pid == 25)
+				dc.SelectObject(&classBrush_y);
+			else if (pid == 26)
+				dc.SelectObject(&classBrush_z);
+			else if (pid == 27)
+				dc.SelectObject(&classBrush_az);
+			else
+				dc.SelectObject(&classBrush);
 
 			int t = p % (nr * DAY_HOURS);
 			int d = p / (nr * DAY_HOURS) + 1;
@@ -778,18 +823,18 @@ void CMainFrame::OnTxtButton()
 		hsi.nMax = w;
 		hsi.nPage = cr.Width();
 
-		SetScrollInfo(SB_HORZ, &hsi, TRUE);
+		//SetScrollInfo(SB_HORZ, &hsi, TRUE);
 
 		hsi.nMax = h;
 		hsi.nPage = cr.Height();
 
-		SetScrollInfo(SB_VERT, &hsi, TRUE);
+		//SetScrollInfo(SB_VERT, &hsi, TRUE);
 		Invalidate();
 	}
 }
 
 void CMainFrame::OnStartButton()
-{	
+{
 	m_wndView.ShowWindow(SW_SHOW); //비활성화 시켜놓은 m_windView(자식뷰) 활성화
 	Button_excel.ShowWindow(SW_HIDE);
 	Button_txt.ShowWindow(SW_HIDE);
