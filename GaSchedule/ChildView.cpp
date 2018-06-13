@@ -137,7 +137,20 @@ void CChildView::OnPaint()
 		_T("Arial"));
 
 	CBrush classBrush(RGB(255, 228, 181));//시간표(과목 색)
-	CPen classPen(PS_SOLID, 1, RGB(255, 228, 181));//시간표 틀 
+	CBrush classBrush_a(RGB(255, 216, 216));//장태무 교수님
+	CBrush classBrush_b(RGB(250, 224, 212));//오세만 교수님
+	CBrush classBrush_c(RGB(255, 224, 140));//최은만 교수님
+	CBrush classBrush_d(RGB(228, 247, 186));//김준태 교수님
+	CBrush classBrush_e(RGB(206, 251, 201));//안종석 교수님
+	CBrush classBrush_f(RGB(212, 244, 250));//이용규 교수님
+	CBrush classBrush_g(RGB(218, 217, 255));//이강우 교수님
+	CBrush classBrush_h(RGB(255, 217, 250));//문봉교 교수님
+	CBrush classBrush_i(RGB(255, 217, 236));//정진우 교수님
+	CBrush classBrush_j(RGB(234, 234, 234));//홍정모 교수님
+	CBrush classBrush_k(RGB(255, 167, 167));//손윤식 교수님
+	CBrush classBrush_l(RGB(250, 237, 125));//주종화 교수님
+	CBrush classBrush_m(RGB(181, 178, 255));//주해종 교수님
+	CPen classPen(PS_SOLID, 1, RGB(224, 224, 224));//시간표 틀 
 	CBrush overlapBrush(HS_BDIAGONAL, RGB(255, 0, 0));
 	CPen overlapPen(PS_NULL, 1, RGB(255, 0, 0));
 	CBrush weekBrush(RGB(224, 224, 224));//요일 시간(색)
@@ -229,7 +242,7 @@ void CChildView::OnPaint()
 		}
 	}
 
-	dc.SelectObject(&classBrush);
+	//dc.SelectObject(&classBrush);
 	dc.SelectObject(&classPen);
 
 	CSingleLock lock(&_sect, TRUE);
@@ -250,6 +263,34 @@ void CChildView::OnPaint()
 		{
 			CourseClass* c = (*it).first;
 			int p = (*it).second;
+			int pid = c->GetProfessor().GetId();
+
+			if (pid == 1)
+				dc.SelectObject(&classBrush_a);
+			else if (pid == 2)
+				dc.SelectObject(&classBrush_b);
+			else if (pid == 3)
+				dc.SelectObject(&classBrush_c);
+			else if (pid == 4)
+				dc.SelectObject(&classBrush_d);
+			else if (pid == 5)
+				dc.SelectObject(&classBrush_e);
+			else if (pid == 6)
+				dc.SelectObject(&classBrush_f);
+			else if (pid == 7)
+				dc.SelectObject(&classBrush_g);
+			else if (pid == 8)
+				dc.SelectObject(&classBrush_h);
+			else if (pid == 9)
+				dc.SelectObject(&classBrush_i);
+			else if (pid == 10)
+				dc.SelectObject(&classBrush_j);
+			else if (pid == 11)
+				dc.SelectObject(&classBrush_k);
+			else if (pid == 12)
+				dc.SelectObject(&classBrush_l);
+			else
+				dc.SelectObject(&classBrush_m);
 
 			int t = p % (nr * DAY_HOURS);
 			int d = p / (nr * DAY_HOURS) + 1;

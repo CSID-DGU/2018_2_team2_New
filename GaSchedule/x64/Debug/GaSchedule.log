@@ -1,14 +1,2 @@
-﻿  stdafx.cpp
-  ChildView.cpp
-  Configuration.cpp
-  Course.cpp
-  CourseClass.cpp
-  GaSchedule.cpp
-  GaScheduleDoc.cpp
-  MainFrm.cpp
-  Professor.cpp
-  Room.cpp
-  Schedule.cpp
-  StudentsGroup.cpp
-  코드를 생성하고 있습니다...
-  GaSchedule.vcxproj -> C:\Users\정경원\Documents\GitHub\2018_2_team2_New\x64\Debug\GaSchedule.exe
+﻿  ChildView.cpp
+  GaSchedule.vcxproj -> C:\Users\지선아\Documents\GitHub\2018_2_team2_New\2018_2_team2_New\x64\Debug\GaSchedule.exe
